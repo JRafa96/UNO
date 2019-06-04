@@ -3,7 +3,7 @@ package jogo;
 import java.util.ArrayList;
 
 public class Jogo{
-	ArrayList<Jogadores> jogadores;
+	ArrayList<Jogador> jogadores;
 	ArrayList<Carta> pilha;
 	Baralho baralho;
 	int sentido;
