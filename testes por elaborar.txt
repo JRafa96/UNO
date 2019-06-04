@@ -1,0 +1,14 @@
+TESTES 
+
+-Quantas cartas tem o baralho
+-mais do que 2 cartas iguais
+-Cada jogador tem quantas cartas
+-Tentar jogar Carta nao jogavel
+-jogador foi buscar cartas dps de +2 ou +4?
+-jogador depois de proibido volta a trocar estado
+-mudar sentido troca ordem jogadores
+-mudar cor modifica estado
+-jogador so vai buscar ate ter carta jogavel
+-jogo acaba quando algum jogador n tem cartas
+-baralho acaba e nao deixa ir buscar cartas sem tirar pilha
+-tentar jogar mais que uma carta
