@@ -62,13 +62,13 @@ public class Baralho {
 				}
 				//for ActionCard -- tipo + cor ENUM
 				for(int m = 0;m<4;m++) {
-					Carta carta = new ActionCard(m, Cor.values()[i]);
+					Carta carta = new ActionCard(Tipo.values()[m], Cor.values()[i]);
 					baralho.add(carta);
 				}
 				//for WildCard -- tipo ENUM
 				for(int n=3; n<5;n++) {
-					Carta carta = new WildCard(n);
-					baralho.add(n);
+					Carta carta = new WildCard(Tipo.values()[n]);
+					baralho.add(carta);
 				}
 				
 			}
