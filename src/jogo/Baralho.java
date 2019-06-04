@@ -57,12 +57,12 @@ public class Baralho {
 			for(int j = 0;i<2;j++) {
 				// for CartaNumero -- cor ENUM
 				for(int l = 1;l<10;l++) {
-					Carta carta = new CartaNumero(l, i);
+					Carta carta = new CartaNumero(l, Cor.values()[i]);
 					baralho.add(carta);
 				}
 				//for ActionCard -- tipo + cor ENUM
 				for(int m = 0;m<4;m++) {
-					Carta carta = new ActionCard(m, i);
+					Carta carta = new ActionCard(m, Cor.values()[i]);
 					baralho.add(carta);
 				}
 				//for WildCard -- tipo ENUM
@@ -74,7 +74,7 @@ public class Baralho {
 			}
 			
 			//for CartaNumero 0 -- cor ENUM
-			Carta carta0 = new CartaNumero(0, i);
+			Carta carta0 = new CartaNumero(0, Cor.values()[i]);
 			baralho.add(carta0);
 		}
 	}
