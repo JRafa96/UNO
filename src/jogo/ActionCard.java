@@ -3,9 +3,9 @@ package jogo;
 public class ActionCard extends Carta {
 
 	private Tipo tipo;
-	private char cor;
+	private Cor cor;
 
-	public ActionCard(Tipo tipo, char cor) {
+	public ActionCard(Tipo tipo, Cor cor) {
 		super();
 		this.tipo = tipo;
 		this.cor = cor;
@@ -15,7 +15,7 @@ public class ActionCard extends Carta {
 		return tipo;
 	}
 
-	public char getCor() {
+	public Cor getCor() {
 		return cor;
 	}
 
