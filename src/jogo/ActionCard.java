@@ -2,16 +2,16 @@ package jogo;
 
 public class ActionCard extends Carta {
 
-	private String tipo;
+	private Tipo tipo;
 	private char cor;
 
-	public ActionCard(String tipo, char cor) {
+	public ActionCard(Tipo tipo, char cor) {
 		super();
 		this.tipo = tipo;
 		this.cor = cor;
 	}
 
-	public String getTipo() {
+	public Tipo getTipo() {
 		return tipo;
 	}
 
