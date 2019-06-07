@@ -19,5 +19,8 @@ public class CartaNumero extends Carta {
 		this.cor = cor;
 	}
 
-//	
+	@Override
+	public String toString() {
+		return numero + " "+cor.name();
+	}
 }

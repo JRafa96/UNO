@@ -22,4 +22,9 @@ public class ActionCard extends Carta {
 	public void açao() {
 		System.out.println("Usaste uma carta " + tipo);
 	}
+	
+	@Override
+	public String toString() {
+		return tipo.name()+" "+cor.name();
+	}
 }

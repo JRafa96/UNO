@@ -22,4 +22,9 @@ public class WildCard extends Carta {
 		mudarCor();
 	}
 	
+	@Override
+	public String toString() {
+		return tipo.name();
+	}
+	
 }
