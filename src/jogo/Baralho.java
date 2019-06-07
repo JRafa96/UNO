@@ -15,6 +15,10 @@ public class Baralho {
 		this.baralho = baralho;
 	}
 	
+	public ArrayList<Carta> getBaralho() {
+		return this.baralho;
+	}
+	
 	public void transferirPilha(ArrayList<Carta> pilha) {
 		setBaralho(pilha);
 		baralhar();
