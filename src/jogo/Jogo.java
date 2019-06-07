@@ -7,16 +7,18 @@ public class Jogo{
 	ArrayList<Carta> pilha;
 	Baralho baralho;
 	Estado estado;
+	Sentido sentido;
+	int jogadorAtual;
 	
 	public void jogar() {
 		começarJogo();
 	}
 	
 	private void começarJogo() {
+		sentido = Sentido.DIREITA;
 		baralho = new Baralho();
-		estado = new Estado();
+		estado = new Estado(jogadores.get(jogadorAtual), pilha.get(pilha.size()-1), sentido, baralho);
 		ArrayList<Carta> pilha = new ArrayList<Carta>();
-		Estado estado = new Estado();
 	}
 	
 	public Carta distribuirCarta() {

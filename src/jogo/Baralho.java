@@ -3,6 +3,7 @@ package jogo;
 import java.util.ArrayList;
 import java.util.Collections;
 
+
 public class Baralho {
 
 	private ArrayList<Carta> baralho = new ArrayList<Carta>();
