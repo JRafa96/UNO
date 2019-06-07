@@ -13,8 +13,8 @@ public class Estado {
 		return "O jogador atual é o " + jogadorAtual.getNome() +
 				"\nA carta em jogo é o " + cartaAtual.toString() + 
 				"\nO jogo está a rodar para a " + sentidoAtual.name() + 
-				"\nRestam " + baralhoAtual.getBaralho.size() + " cartas no baralho"; 
-	}
+				"\nRestam " + baralhoAtual.getBaralho().size()+ " cartas no baralho"; 
+	}i
 	
 	public Estado(Jogador jogadorAtual, Carta cartaAtual, Sentido sentidoAtual, Baralho baralhoAtual) {
 		this.jogadorAtual = jogadorAtual;
