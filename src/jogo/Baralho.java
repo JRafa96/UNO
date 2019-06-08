@@ -59,7 +59,7 @@ public class Baralho {
 		//for COR
 		for(int i=0;i<4;i++) {
 			//for Carta exceto 0
-			for(int j = 0;i<2;j++) {
+			for(int j = 0;j<2;j++) {
 				// for CartaNumero -- cor ENUM
 				for(int l = 1;l<10;l++) {
 					Carta carta = new CartaNumero(l, Cor.values()[i]);
