@@ -19,8 +19,14 @@ public class ActionCard extends Carta {
 		return cor;
 	}
 
-	public void açao() {
-		System.out.println("Usaste uma carta " + tipo);
+	public void açao() throws Exception{
+		if(tipo == Tipo.MAIS_2) {
+			throw new Mais_2();
+		} else if (tipo == Tipo.INVERTER_SENTIDO) {
+			throw new Inverter_Sentido();
+		} else if (tipo == Tipo.PROIBIDO) {
+			throw new Proibido();
+		}
 	}
 	
 	@Override
