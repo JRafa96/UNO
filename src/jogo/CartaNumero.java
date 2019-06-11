@@ -3,21 +3,24 @@ package jogo;
 public class CartaNumero extends Carta {
 
 	private int numero;
-	private char cor;
+	private Cor cor;
 
 	public int getNumero() {
 		return numero;
 	}
 
-	public char getCor() {
+	public Cor getCor() {
 		return cor;
 	}
 
-	public CartaNumero(int numero, char cor) {
+	public CartaNumero(int numero, Cor cor) {
 		super();
 		this.numero = numero;
 		this.cor = cor;
 	}
 
-//	
+	@Override
+	public String toString() {
+		return numero + " "+cor.name();
+	}
 }

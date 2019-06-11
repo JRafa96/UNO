@@ -2,24 +2,29 @@ package jogo;
 
 public class ActionCard extends Carta {
 
-	private String tipo;
-	private char cor;
+	private Tipo tipo;
+	private Cor cor;
 
-	public ActionCard(String tipo, char cor) {
+	public ActionCard(Tipo tipo, Cor cor) {
 		super();
 		this.tipo = tipo;
 		this.cor = cor;
 	}
 
-	public String getTipo() {
+	public Tipo getTipo() {
 		return tipo;
 	}
 
-	public char getCor() {
+	public Cor getCor() {
 		return cor;
 	}
 
 	public void açao() {
 		System.out.println("Usaste uma carta " + tipo);
+	}
+	
+	@Override
+	public String toString() {
+		return tipo.name()+" "+cor.name();
 	}
 }

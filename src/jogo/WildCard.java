@@ -2,14 +2,14 @@ package jogo;
 
 public class WildCard extends Carta {
 
-	private String tipo;
+	private Tipo tipo;
 
-	public WildCard(String tipo) {
+	public WildCard(Tipo tipo) {
 		super();
 		this.tipo = tipo;
 	}
 
-	public String getTipo() {
+	public Tipo getTipo() {
 		return tipo;
 	}
 
@@ -20,6 +20,11 @@ public class WildCard extends Carta {
 	public void açao() {
 		System.out.println("Usaste uma carta " + tipo);
 		mudarCor();
+	}
+	
+	@Override
+	public String toString() {
+		return tipo.name();
 	}
 	
 }
