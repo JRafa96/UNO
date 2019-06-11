@@ -2,6 +2,7 @@ TESTES
 
 -Quantas cartas tem o baralho
 -mais do que 2 cartas iguais
+-mais do que 4 wildcards iguais
 -Cada jogador tem quantas cartas
 -Tentar jogar Carta nao jogavel
 -jogador foi buscar cartas dps de +2 ou +4?
