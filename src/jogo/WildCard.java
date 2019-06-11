@@ -1,5 +1,7 @@
 package jogo;
 
+import java.util.Scanner;
+
 public class WildCard extends Carta {
 
 	private Tipo tipo;
@@ -13,18 +15,30 @@ public class WildCard extends Carta {
 		return tipo;
 	}
 
-	private void mudarCor() {
-		System.out.println("Mudaste de cor");
+	private Cor mudarCor() {
+		String escolha;
+		do {
+			Scanner LerS = new Scanner(System.in);
+			escolha = LerS.next();
+		} while (Cor.stringToCor(escolha) == null);
+		
+		return Cor.stringToCor(escolha);
+		
 	}
-	
-	public void açao() {
-		System.out.println("Usaste uma carta " + tipo);
+
+
+
+	public void açao() throws Exception{
 		mudarCor();
+		if(tipo == Tipo.MAIS_4) {
+			throw new Mais_4();
+		}
+		
 	}
-	
+
 	@Override
 	public String toString() {
 		return tipo.name();
 	}
-	
+
 }
