@@ -9,7 +9,6 @@ class JogadorTeste {
 
 	@BeforeEach
 	void setUp() throws Exception {
-
 	}
 
 	@Test
