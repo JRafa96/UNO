@@ -22,7 +22,6 @@ public class Jogador {
 	}
 
 	public Jogador() {
-
 	}
 
 	public Jogador(String nome) {
