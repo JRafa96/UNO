@@ -66,7 +66,7 @@ public class Baralho {
 					baralho.add(carta);
 				}
 				//for ActionCard -- tipo + cor ENUM
-				for(int m = 0;m<4;m++) {
+				for(int m = 0;m<3;m++) {
 					Carta carta = new ActionCard(Tipo.values()[m], Cor.values()[i]);
 					baralho.add(carta);
 				}
