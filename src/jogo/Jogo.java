@@ -38,11 +38,13 @@ public class Jogo {
 	public void jogar() {
 		começarJogo();
 		Jogador jAtual;
+		Carta carta;
 		int i = 0;
 		do {
 			i++;
 			jAtual = proximoJogador();
-			pilha.add(jAtual.jogarCarta(estado));
+			carta=jAtual.jogarCarta(estado);
+			pilha.add(carta);
 			System.out.println(jAtual.getNome()+" jogou "+pilha.get(0).toString());
 		} while (i < 10);
 	}
