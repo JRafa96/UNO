@@ -71,7 +71,7 @@ public class Jogo {
 			jogador.receberCartas(baralho.tirarCartas(7));
 			jogadores.add(jogador);
 		}
-		ArrayList<Carta> pilha = new ArrayList<Carta>();
+		pilha = new ArrayList<Carta>();
 		pilha.add(baralho.tirarCarta());
 		estado = new Estado(jogadores.get(jogadorAtual), pilha.get(pilha.size() - 1), sentido, baralho);
 		System.out.println(estado.toString());
