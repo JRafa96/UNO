@@ -1,6 +1,6 @@
 package jogo;
 
-public class ActionCard extends Carta {
+public class ActionCard extends CartaEspecial {
 
 	private Tipo tipo;
 	private Cor cor;
@@ -19,6 +19,7 @@ public class ActionCard extends Carta {
 		return cor;
 	}
 
+	@Override
 	public void açao() throws Exception{
 		if(tipo == Tipo.MAIS_2) {
 			throw new Mais_2();

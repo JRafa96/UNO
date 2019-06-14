@@ -2,7 +2,7 @@ package jogo;
 
 import java.util.Scanner;
 
-public class WildCard extends Carta {
+public class WildCard extends CartaEspecial {
 
 	private Tipo tipo;
 
@@ -27,7 +27,7 @@ public class WildCard extends Carta {
 	}
 
 
-
+	@Override
 	public void açao() throws Exception{
 		mudarCor();
 		if(tipo == Tipo.MAIS_4) {
