@@ -11,42 +11,55 @@ public class Jogo {
 	Sentido sentido;
 	int jogadorAtual;
 
-	public Jogador proximoJogador() {
-		Jogador jogador;
+	private int indexProximoJogador() {
+		int indexJogador=jogadorAtual;
 		int nextI = sentido.ordinal();
-		if (jogadorAtual + nextI < 0) {
-			System.out.println("recuar para o ultimo");
-			jogadorAtual = jogadores.size() - 1;
-		} else if (jogadorAtual + nextI >= jogadores.size()) {
-			System.out.println("avançar para o primeiro");
-			jogadorAtual = 0;
+		if (indexJogador + nextI < 0) {
+			indexJogador = jogadores.size() - 1;
+		} else if (indexJogador + nextI >= jogadores.size()) {
+			indexJogador = 0;
 		} else {
-			jogadorAtual += nextI;
-			System.out.println("avançar normal");
-			
+			indexJogador += nextI;
+
 		}
-		System.out.println("O Jogador atual é "+jogadorAtual);
-		if (jogadores.get(jogadorAtual).isProibido()) {
-			System.out.println("Saltar Jogador " + jogadores.get(jogadorAtual).isProibido());
-			jogadores.get(jogadorAtual).setProibido(false);
-			jogador = proximoJogador();
-		}
-		jogador = jogadores.get(jogadorAtual);
-		return jogador;
+		return indexJogador;
 	}
 
+	private Jogador proximoJogador() {
+		jogadorAtual=indexProximoJogador();
+		Jogador jogador=jogadores.get(jogadorAtual);
+		return jogador;
+	}
+	
 	public void jogar() {
 		começarJogo();
 		Jogador jAtual;
 		Carta carta;
-		int i = 0;
 		do {
-			i++;
 			jAtual = proximoJogador();
-			carta=jAtual.jogarCarta(estado);
+			jAtual.verificarJogaveis(estado);
+			while (jAtual.getJogaveis().size() <= 0) {
+				jAtual.receberCarta(baralho.tirarCarta());
+				jAtual.verificarJogaveis(estado);
+			}
+
+			carta = jAtual.jogarCarta(estado);
+			if (!(carta instanceof CartaNumero)) {
+				try {
+					((CartaEspecial) carta).açao();
+				} catch (Mais_4 m4) {
+					System.out.println("mais4");
+				} catch (Mais_2 m2) {
+					// TODO Auto-generated catch block
+					System.out.println("mais4");
+				}catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
 			pilha.add(carta);
-			System.out.println(jAtual.getNome()+" jogou "+pilha.get(0).toString());
-		} while (i < 10);
+			System.out.println(jAtual.getNome() + " jogou " + pilha.get(0).toString());
+		} while (jAtual.getMao().size() == 0);
 	}
 
 	private void começarJogo() {

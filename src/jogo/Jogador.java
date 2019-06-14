@@ -37,8 +37,13 @@ public class Jogador {
 
 	}
 
+	private String getJogaveisString() {		
+		return jogaveis.toString();
+	}
+	
 	public Carta jogarCarta(Estado estado) {
 		verificarJogaveis(estado);
+		System.out.println(getJogaveisString());
 		System.out.println("Que carta quer jogar?");
 		Scanner LerS = new Scanner(System.in);
 		int n = LerS.nextInt();
@@ -66,7 +71,7 @@ public class Jogador {
 
 	public void verificarJogaveis(Estado estado) {
 		jogaveis.clear();
-		for (int j = 0; j <= mao.size(); j++) {
+		for (int j = 0; j < mao.size(); j++) {
 			if (mao.get(j) instanceof ActionCard) {
 				if (estado.cartaAtual instanceof ActionCard) {
 					if (((ActionCard) mao.get(j)).getCor() == ((ActionCard) estado.cartaAtual).getCor()) {
@@ -109,7 +114,7 @@ public class Jogador {
 					}
 				}
 				if (estado.cartaAtual instanceof ActionCard) {
-					if (((ActionCard) mao.get(j)).getCor() == ((CartaNumero) estado.cartaAtual).getCor()) {
+					if (((CartaNumero) mao.get(j)).getCor() == ((ActionCard) estado.cartaAtual).getCor()) {
 						jogaveis.add(mao.get(j));
 						mao.remove(j);
 						break;

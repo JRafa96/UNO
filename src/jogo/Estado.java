@@ -7,6 +7,15 @@ public class Estado {
 	Sentido sentidoAtual;
 	Baralho baralhoAtual;
 	
+	public void setCarta(Carta carta) {
+		if (carta instanceof WildCard) {
+			cartaAtual=new WildCard(((WildCard) carta).getTipo());
+		}else if (carta instanceof CartaNumero) {
+			cartaAtual=new CartaNumero(((CartaNumero) carta).getNumero(), ((CartaNumero) carta).getCor());
+		}else if (carta instanceof ActionCard) {
+			cartaAtual=new ActionCard(((ActionCard) carta).getTipo(), ((ActionCard) carta).getCor());
+		}
+	}
 	
 	@Override
 	public String toString() {
