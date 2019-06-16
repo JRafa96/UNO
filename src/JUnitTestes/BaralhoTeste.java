@@ -91,14 +91,11 @@ class BaralhoTeste {
 		assertEquals(25, azul, "total de Cartas Ação:"+ azul);
 	}
 	@Test
-	@DisplayName("╯°□°）╯ Quantas Cartas da mesma cor")
+	@DisplayName("╯°□°）╯ Quantas Cartas iguais")
 	void Testar_total_iguais() {
 		Baralho B1 = new Baralho();
 		Carta instancia;
-		int amarelo=0;
-		int vermelho=0;
-		int verde=0;
-		int azul=0;
+		
 		for (int i = 0; i < 108; i++) {
 			instancia = B1.getBaralho().get(i);
 			if (instancia instanceof CartaNumero) {

@@ -59,7 +59,7 @@ public class Jogo {
 					e.printStackTrace();
 				}
 			}
-		} while (jogadorAtual.getMao().size() >= 0&& jogadorAtual.getJogaveis().size() >= 0);
+		} while (jogadorAtual.getMao().size() >= 0 && jogadorAtual.getJogaveis().size() >= 0);
 		System.out.println("O jogo acabou!!");
 	}
 
