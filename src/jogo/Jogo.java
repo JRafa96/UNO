@@ -34,7 +34,7 @@ public class Jogo {
 	}
 
 	public void jogar() {
-		começarJogo();
+		comeÃ§arJogo();
 		Jogador jogadorAtual;
 		Carta carta;
 		do {
@@ -50,7 +50,7 @@ public class Jogo {
 			if (!(carta instanceof CartaNumero)) {
 				Jogador proximoJogador = jogadores.get(indiceProximoJogador());
 				try {
-					((CartaEspecial) carta).açao();
+					((CartaEspecial) carta).aÃ§ao();
 				} catch (Mais_4 m4) {
 					mandarBuscar(jogadorAtual, proximoJogador, 4);
 				} catch (Mais_2 m2) {
@@ -58,7 +58,7 @@ public class Jogo {
 				} catch (Proibido proibir) {
 					mandarBuscar(jogadorAtual, proximoJogador, 2);
 				} catch (Inverter_Sentido inverter_Sentido) {
-					//
+					trocarSentido();
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -70,25 +70,33 @@ public class Jogo {
 		System.out.println("O jogo acabou!!");
 	}
 
-	public void mandarBuscar(Jogador jogadorAtual, Jogador proximoJogador, int quantas) {
+	private void mandarBuscar(Jogador jogadorAtual, Jogador proximoJogador, int quantas) {
 		proximoJogador.receberCartas(baralho.tirarCartas(quantas));
 		proibirProximo();
 		System.out.println("O jogador " + jogadorAtual.getNome() + " mandou o jogador " + proximoJogador.getNome()
 				+ " ir buscar 4 cartas");
 	}
 
-	public void proibirProximo() {
+	private void proibirProximo() {
 		Jogador proximoJogador = jogadores.get(indiceProximoJogador());
 		proximoJogador.setProibido(true);
 	}
 
-	private void começarJogo() {
+	private void trocarSentido() {
+		if(sentido==Sentido.DIREITA) {
+			sentido=Sentido.ESQUERDA;
+		}else {
+			sentido=Sentido.DIREITA;
+		}
+	}
+	
+	private void comeÃ§arJogo() {
 		sentido = Sentido.DIREITA;
 		baralho = new Baralho();
 		Scanner scan = new Scanner(System.in);
 		int quantos;
 		do {
-			System.out.println("Quantos jogadores vão jogar ?");
+			System.out.println("Quantos jogadores vï¿½o jogar ?");
 			quantos = scan.nextInt();
 			if (quantos <= 1 || quantos > 10) {
 				System.out.println("O numero de jogadores tem de ser maior que 1 e menor que 10");
