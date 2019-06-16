@@ -13,7 +13,7 @@ public class Jogo {
 
 	public Jogo() {
 	};
-	
+
 	private int indiceProximoJogador() {
 		int indexJogador = indiceJogadorAtual;
 		int nextI = sentido.ordinal();
@@ -45,8 +45,8 @@ public class Jogo {
 				jogadorAtual.verificarJogaveis(estado);
 			}
 			carta = jogadorAtual.jogarCarta(estado);
-			System.out.println(jogadorAtual.getNome() + " jogou " + carta.toString());		
-			
+			System.out.println(jogadorAtual.getNome() + " jogou " + carta.toString());
+
 			if (!(carta instanceof CartaNumero)) {
 				Jogador proximoJogador = jogadores.get(indiceProximoJogador());
 				try {
@@ -55,6 +55,10 @@ public class Jogo {
 					mandarBuscar(jogadorAtual, proximoJogador, 4);
 				} catch (Mais_2 m2) {
 					mandarBuscar(jogadorAtual, proximoJogador, 2);
+				} catch (Proibido proibir) {
+					mandarBuscar(jogadorAtual, proximoJogador, 2);
+				} catch (Inverter_Sentido inverter_Sentido) {
+					//
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -68,13 +72,14 @@ public class Jogo {
 
 	public void mandarBuscar(Jogador jogadorAtual, Jogador proximoJogador, int quantas) {
 		proximoJogador.receberCartas(baralho.tirarCartas(quantas));
-		proximoJogador.setProibido(true);
+		proibirProximo();
 		System.out.println("O jogador " + jogadorAtual.getNome() + " mandou o jogador " + proximoJogador.getNome()
 				+ " ir buscar 4 cartas");
 	}
 
 	public void proibirProximo() {
-
+		Jogador proximoJogador = jogadores.get(indiceProximoJogador());
+		proximoJogador.setProibido(true);
 	}
 
 	private void começarJogo() {
