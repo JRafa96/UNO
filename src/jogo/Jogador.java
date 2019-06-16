@@ -37,10 +37,10 @@ public class Jogador {
 
 	}
 
-	private String getJogaveisString() {		
+	private String getJogaveisString() {
 		return jogaveis.toString();
 	}
-	
+
 	public Carta jogarCarta(Estado estado) {
 		verificarJogaveis(estado);
 		System.out.println(getJogaveisString());
@@ -69,63 +69,51 @@ public class Jogador {
 		}
 	}
 
+	private void moverJogaveis(int pos) {
+		jogaveis.add(mao.get(pos));
+		mao.remove(pos);
+	}
+	
 	public void verificarJogaveis(Estado estado) {
+		mao.addAll(jogaveis);
 		jogaveis.clear();
 		for (int j = 0; j < mao.size(); j++) {
 			if (mao.get(j) instanceof ActionCard) {
 				if (estado.cartaAtual instanceof ActionCard) {
 					if (((ActionCard) mao.get(j)).getCor() == ((ActionCard) estado.cartaAtual).getCor()) {
-						jogaveis.add(mao.get(j));
-						mao.remove(j);
-						break;
+						moverJogaveis(j);
+						j--;
+					} else if (((ActionCard) mao.get(j)).getTipo() == ((ActionCard) estado.cartaAtual).getTipo()) {
+						moverJogaveis(j);
+						j--;
 					}
-					if (((ActionCard) mao.get(j)).getTipo() == ((ActionCard) estado.cartaAtual).getTipo()) {
-						jogaveis.add(mao.get(j));
-						mao.remove(j);
-						break;
-					}
-				}
-				if (estado.cartaAtual instanceof CartaNumero) {
-					if (((ActionCard) mao.get(j)).getCor() == ((CartaNumero) estado.cartaAtual).getCor()) {
-						jogaveis.add(mao.get(j));
-						mao.remove(j);
-						break;
+				} else if (estado.cartaAtual instanceof CartaNumero) {
+					if (((ActionCard) mao.get(j)).getCor().ordinal() == ((CartaNumero) estado.cartaAtual).getCor().ordinal()) {
+						moverJogaveis(j);
+						j--;
 					}
 				}
 
-			} /*
-				 * else if (mao.get(j) instanceof CartaNumero) {
-				 * 
-				 * if (((CartaNumero) mao.get(j)).getNumero() == ((CartaNumero)
-				 * estado.cartaAtual).getNumero()) { jogaveis.add(mao.get(j)); mao.remove(j);
-				 * break; } }
-				 */
-			if (mao.get(j) instanceof CartaNumero) {
+			} else if (mao.get(j) instanceof CartaNumero) {
 				if (estado.cartaAtual instanceof CartaNumero) {
-					if (((CartaNumero) mao.get(j)).getCor() == ((CartaNumero) estado.cartaAtual).getCor()) {
-						jogaveis.add(mao.get(j));
-						mao.remove(j);
-						break;
+					if (((CartaNumero) mao.get(j)).getCor().ordinal() == ((CartaNumero) estado.cartaAtual).getCor().ordinal()) {
+						moverJogaveis(j);
+						j--;
+					} else if (((CartaNumero) mao.get(j)).getNumero() == ((CartaNumero) estado.cartaAtual)
+							.getNumero()) {
+						moverJogaveis(j);
+						j--;
 					}
-					if (((CartaNumero) mao.get(j)).getNumero() == ((CartaNumero) estado.cartaAtual).getNumero()) {
-						jogaveis.add(mao.get(j));
-						mao.remove(j);
-						break;
-					}
-				}
-				if (estado.cartaAtual instanceof ActionCard) {
-					if (((CartaNumero) mao.get(j)).getCor() == ((ActionCard) estado.cartaAtual).getCor()) {
-						jogaveis.add(mao.get(j));
-						mao.remove(j);
-						break;
+				} else if (estado.cartaAtual instanceof ActionCard) {
+					if (((CartaNumero) mao.get(j)).getCor().ordinal() == ((ActionCard) estado.cartaAtual).getCor().ordinal()) {
+						moverJogaveis(j);
+						j--;
 					}
 				}
 
-				if (mao.get(j) instanceof WildCard) { // instanceof verifica se é uma classe daquele tipo
-					jogaveis.add(mao.get(j));
-					mao.remove(j);
-					break;
-				}
+			} else if (mao.get(j) instanceof WildCard) { // instanceof verifica se é uma classe daquele tipo
+				moverJogaveis(j);
+				j--;
 			}
 		}
 	}

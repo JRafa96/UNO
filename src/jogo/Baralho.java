@@ -99,11 +99,12 @@ public class Baralho {
 	 * Método utilizado para verificar se a primeira carta do baralho é uma <code>CartaNumero</code>.
 	 */
 	protected void validarPrimeiraCarta() {
-		Carta carta = baralho.get(0);
-		do {
+		Carta carta= baralho.get(0);
+		while (!(carta instanceof CartaNumero)) {
+			carta = baralho.get(0);
 			devolverCarta(carta);
 			baralho.remove(0);
-		}while (!(carta instanceof CartaNumero));
+		}
 	}
 	
 	/**
@@ -124,21 +125,21 @@ public class Baralho {
 				for(int l = 1;l<10;l++) {
 					Carta carta = new CartaNumero(l, Cor.values()[i]);
 					baralho.add(carta);
-				}
+				}/*
 				//for ActionCard -- tipo + cor ENUM
 				for(int m = 0;m<3;m++) {
 					Carta carta = new ActionCard(Tipo.values()[m], Cor.values()[i]);
 					baralho.add(carta);
-				}
+				}*/
 				
 				
 			}
-			
+			/*
 			//for WildCard -- tipo ENUM
 			for(int n=3; n<5;n++) {
 				Carta carta = new WildCard(Tipo.values()[n]);
 				baralho.add(carta);
-			}
+			}*/
 			
 			//for CartaNumero 0 -- cor ENUM
 			Carta carta0 = new CartaNumero(0, Cor.values()[i]);
