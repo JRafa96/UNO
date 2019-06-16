@@ -7,12 +7,21 @@ public class Estado {
 	Sentido sentidoAtual;
 	Baralho baralhoAtual;
 	
+	public void setCarta(Carta carta) {
+		if (carta instanceof WildCard) {
+			cartaAtual=new WildCard(((WildCard) carta).getTipo());
+		}else if (carta instanceof CartaNumero) {
+			cartaAtual=new CartaNumero(((CartaNumero) carta).getNumero(), ((CartaNumero) carta).getCor());
+		}else if (carta instanceof ActionCard) {
+			cartaAtual=new ActionCard(((ActionCard) carta).getTipo(), ((ActionCard) carta).getCor());
+		}
+	}
 	
 	@Override
 	public String toString() {
-		return "O jogador atual é o " + jogadorAtual.getNome() +
-				"\nA carta em jogo é o " + cartaAtual.toString() + 
-				"\nO jogo está a rodar para a " + sentidoAtual.name() + 
+		return "O jogador atual ï¿½ o " + jogadorAtual.getNome() +
+				"\nA carta em jogo ï¿½ o " + cartaAtual.toString() + 
+				"\nO jogo estï¿½ a rodar para a " + sentidoAtual.name() + 
 				"\nRestam " + baralhoAtual.getBaralho().size()+ " cartas no baralho"; 
 	}
 	
