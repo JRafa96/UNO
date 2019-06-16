@@ -77,10 +77,10 @@ public class Jogo {
 		do {
 			System.out.println("Quantos jogadores vão jogar ?");
 			quantos = scan.nextInt();
-			if (quantos <= 1) {
-				System.out.println("O numero de jogadores tem de ser maior que 1");
+			if (quantos <= 1 || quantos >10) {
+				System.out.println("O numero de jogadores tem de ser maior que 1 e menor que 10");
 			}
-		} while (quantos <= 1);
+		} while (quantos <= 1 || quantos >10);
 		jogadores = new ArrayList<>();
 		String nome;
 		Jogador jogador;
