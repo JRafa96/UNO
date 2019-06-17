@@ -36,6 +36,7 @@ public class WildCard extends CartaEspecial {
 	private Cor mudarCor() {
 		String escolha;
 		do {
+			System.out.println("Escolha uma cor");
 			Scanner LerS = new Scanner(System.in);
 			escolha = LerS.next();
 		} while (Cor.stringToCor(escolha) == null);
