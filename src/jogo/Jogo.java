@@ -42,6 +42,7 @@ public class Jogo {
 				jogadorAtual.receberCarta(baralho.tirarCarta());
 				jogadorAtual.verificarJogaveis(estado);
 			}
+			System.out.println(estado.toString());
 			carta = jogadorAtual.jogarCarta(estado);
 			pilha.add(carta);
 			estado.setCarta(carta);
