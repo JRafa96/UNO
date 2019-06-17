@@ -5,6 +5,9 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+import com.sun.jndi.url.corbaname.corbanameURLContextFactory;
+
 import jogo.*;
 
 class BaralhoTeste {
@@ -102,38 +105,7 @@ class BaralhoTeste {
 
 			instancia = B1.getBaralho().get(i);
 			if (instancia instanceof CartaNumero) {
-				switch (((CartaNumero) instancia).getNumero()) {
-				case 0:
-					quantas[0] += 1;
-					break;
-				case 1:
-					quantas[1] += 1;
-					break;
-				case 2:
-					quantas[2] += 1;
-					break;
-				case 3:
-					quantas[3] += 1;
-					break;
-				case 4:
-					quantas[4] += 1;
-					break;
-				case 5:
-					quantas[5] += 1;
-					break;
-				case 6:
-					quantas[6] += 1;
-					break;
-				case 7:
-					quantas[7] += 1;
-					break;
-				case 8:
-					quantas[8] += 1;
-					break;
-				case 9:
-					quantas[9] += 1;
-					break;
-				}
+				quantas[((CartaNumero) instancia).getNumero()]++;
 			} else if (instancia instanceof ActionCard) {
 				switch (((ActionCard) instancia).getTipo()) {
 				case INVERTER_SENTIDO:
@@ -160,35 +132,39 @@ class BaralhoTeste {
 	}
 
 	@Test
-	@DisplayName("╯°□°）╯ Quantas Cartas iguais")
+	@DisplayName("╯°□°）╯ Quantas Cartas iguais da mesma cor")
 	void Testar_cartas() {
 		Baralho B1 = new Baralho();
 		Carta instancia;
 		int[][] expected = new int[][] { { 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2 },
-				{ 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2 }, { 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2 },
-				{ 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2 } };
-		int[][] reality = new int[4][13];
-		/*
-		 * 
-		 */
+										 { 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2 },
+										 { 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2 },
+										 { 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2 } };
 
+		int[][] reality = new int[][] { { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+										{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+										{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+										{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 } };
 		for (int i = 0; i < 4; i++) {
-
 			for (int j = 0; j < 108; j++) {
-				instancia = B1.getBaralho().get(i);
+				instancia = B1.getBaralho().get(j);
 				if (instancia instanceof CartaNumero) {
-					reality[i][(((CartaNumero) instancia).getNumero())] += 1;
+					if (((CartaNumero) instancia).getCor().ordinal() == i) {
+						reality[i][(((CartaNumero) instancia).getNumero())] += 1;
+					}
 				} else if (instancia instanceof ActionCard) {
-					switch (((ActionCard) instancia).getTipo()) {
-					case INVERTER_SENTIDO:
-						reality[i][10] += 1;
-						break;
-					case MAIS_2:
-						reality[i][11] += 1;
-						break;
-					case PROIBIDO:
-						reality[i][12] += 1;
-						break;
+					if (((ActionCard) instancia).getCor().ordinal() == i) {
+						switch (((ActionCard) instancia).getTipo()) {
+						case INVERTER_SENTIDO:
+							reality[i][10] += 1;
+							break;
+						case MAIS_2:
+							reality[i][11] += 1;
+							break;
+						case PROIBIDO:
+							reality[i][12] += 1;
+							break;
+						}
 					}
 				}
 			}
@@ -197,7 +173,8 @@ class BaralhoTeste {
 	}
 
 	@Test
-	@DisplayName("╯°□°）╯ Quantas Cartas iguais")
+	@DisplayName("╯°□°）╯ Primeira Carta Baralho Valida")
 	void Testar_n1_valida() {
+		
 	}
 }
