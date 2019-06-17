@@ -80,7 +80,7 @@ public class Jogo {
 				System.out.println(jogadorAtual.getNome() + " jogou " + pilha.get(pilha.size() - 1).toString());
 			}
 			jogadorAtual.setProibido(false);
-		} while (jogadorAtual.getMao().size() >= 0 && jogadorAtual.getJogaveis().size() >= 0);
+		} while (!(jogadorAtual.getMao().size() == 0 && jogadorAtual.getJogaveis().size() == 0));
 		System.out.println("O jogo acabou!!");
 	}
 
