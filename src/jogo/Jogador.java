@@ -50,6 +50,7 @@ public class Jogador {
 		Carta carta = jogaveis.get(n);
 		jogaveis.remove(n);
 		mao.addAll(jogaveis);
+		jogaveis.clear();
 		return carta;
 	}
 
