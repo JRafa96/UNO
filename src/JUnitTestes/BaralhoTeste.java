@@ -137,14 +137,12 @@ class BaralhoTeste {
 		Baralho B1 = new Baralho();
 		Carta instancia;
 		int[][] expected = new int[][] { { 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2 },
-										 { 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2 },
-										 { 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2 },
-										 { 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2 } };
+				{ 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2 }, { 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2 },
+				{ 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2 } };
 
 		int[][] reality = new int[][] { { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-										{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-										{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-										{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 } };
+				{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+				{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 } };
 		for (int i = 0; i < 4; i++) {
 			for (int j = 0; j < 108; j++) {
 				instancia = B1.getBaralho().get(j);
@@ -175,6 +173,33 @@ class BaralhoTeste {
 	@Test
 	@DisplayName("╯°□°）╯ Primeira Carta Baralho Valida")
 	void Testar_n1_valida() {
-		
+		Carta c1;
+		Baralho B1 = new Baralho();
+		c1 = B1.tirarCarta();
+		assertTrue(c1 instanceof CartaNumero == true);
+	}
+
+	@Test
+	@DisplayName("╯°□°）╯ quantas Wildcards ")
+	void teste_wildcards() {
+		Baralho B1 = new Baralho();
+		Carta c1;
+		int mais4 = 0;
+		int mudacor = 0;
+		for (int i = 0; i < 108; i++) {
+			c1 = B1.getBaralho().get(i);
+			if (c1 instanceof WildCard) {
+				switch (((WildCard) c1).getTipo()) {
+				case MAIS_4:
+					mais4 += 1;
+					break;
+				case MUDAR_COR:
+					mudacor += 1;
+					break;
+				}
+
+			}
+
+		}
 	}
 }
