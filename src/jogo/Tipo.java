@@ -14,7 +14,7 @@ package jogo;
  *
  */
 public enum Tipo {
-	MAIS_2(0), PROIBIDO(1), INVERTER_SENTIDO(2), MUDAR_COR(3), MAIS_4(4);
+	MAIS_2(0), PROIBIDO(1), INVERTER_SENTIDO(2), MUDAR_COR(3), MAIS_4(4),COR(5);
 
 	private int nTipo;
 

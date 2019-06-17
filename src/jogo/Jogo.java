@@ -12,7 +12,7 @@ public class Jogo {
 	int indiceJogadorAtual;
 
 	private int indiceProximoJogador() {
-		int indexJogador=indiceJogadorAtual;
+		int indexJogador = indiceJogadorAtual;
 		int nextI = sentido.ordinal();
 		if (indexJogador + nextI < 0) {
 			indexJogador = jogadores.size() - 1;
@@ -26,11 +26,11 @@ public class Jogo {
 	}
 
 	private Jogador proximoJogador() {
-		indiceJogadorAtual=indiceProximoJogador();
-		Jogador jogador=jogadores.get(indiceJogadorAtual);
+		indiceJogadorAtual = indiceProximoJogador();
+		Jogador jogador = jogadores.get(indiceJogadorAtual);
 		return jogador;
 	}
-	
+
 	public void jogar() {
 		começarJogo();
 		Jogador jogadorAtual;
@@ -46,25 +46,28 @@ public class Jogo {
 			carta = jogadorAtual.jogarCarta(estado);
 			pilha.add(carta);
 			if (!(carta instanceof CartaNumero)) {
-				Jogador proximoJogador=jogadores.get(indiceProximoJogador());
+				Jogador proximoJogador = jogadores.get(indiceProximoJogador());
 				try {
 					((CartaEspecial) carta).açao();
 				} catch (Mais_4 m4) {
 					mandarBuscar(jogadorAtual, proximoJogador, 4);
+					mudarCor(m4.getCor());
 				} catch (Mais_2 m2) {
 					mandarBuscar(jogadorAtual, proximoJogador, 2);
 				} catch (Proibido proibir) {
-					mandarBuscar(jogadorAtual, proximoJogador, 2);
+					proximoJogador();
 				} catch (Inverter_Sentido inverter_Sentido) {
 					trocarSentido();
+				} catch (MudaCor mudaCor) {
+					mudarCor(mudaCor.getCor());
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
 			estado.setCarta(carta);
-			System.out.println(jogadorAtual.getNome() + " jogou " + pilha.get(pilha.size()-1).toString());
-		} while (jogadorAtual.getMao().size() >= 0&& jogadorAtual.getJogaveis().size() >= 0);
+			System.out.println(jogadorAtual.getNome() + " jogou " + pilha.get(pilha.size() - 1).toString());
+		} while (jogadorAtual.getMao().size() >= 0 && jogadorAtual.getJogaveis().size() >= 0);
 		System.out.println("O jogo acabou!!");
 	}
 
@@ -78,18 +81,23 @@ public class Jogo {
 	private void proibirProximo() {
 		Jogador proximoJogador = jogadores.get(indiceProximoJogador());
 		proximoJogador.setProibido(true);
-		System.out.println("O jogador "+jogadores.get(indiceJogadorAtual).getNome()+" proibiu o jogador "+proximoJogador.getNome()+" de jogar!\n");
+		System.out.println("O jogador " + jogadores.get(indiceJogadorAtual).getNome() + " proibiu o jogador "
+				+ proximoJogador.getNome() + " de jogar!\n");
+	}
+
+	private void mudarCor(Cor cor) {
+		estado.setCarta(new ActionCard(Tipo.COR, cor));
 	}
 
 	private void trocarSentido() {
-		if(sentido==Sentido.DIREITA) {
-			sentido=Sentido.ESQUERDA;
-		}else {
-			sentido=Sentido.DIREITA;
+		if (sentido == Sentido.DIREITA) {
+			sentido = Sentido.ESQUERDA;
+		} else {
+			sentido = Sentido.DIREITA;
 		}
-		System.out.println(jogadores.get(indiceJogadorAtual)+" alterou o sentido do Jogo");
+		System.out.println(jogadores.get(indiceJogadorAtual) + " alterou o sentido do Jogo");
 	}
-	
+
 	private void começarJogo() {
 		sentido = Sentido.DIREITA;
 		baralho = new Baralho();
@@ -98,10 +106,10 @@ public class Jogo {
 		do {
 			System.out.println("Quantos jogadores vão jogar ?");
 			quantos = scan.nextInt();
-			if (quantos <= 1 || quantos >10) {
+			if (quantos <= 1 || quantos > 10) {
 				System.out.println("O numero de jogadores tem de ser maior que 1 e menor que 10");
 			}
-		} while (quantos <= 1 || quantos >10);
+		} while (quantos <= 1 || quantos > 10);
 		jogadores = new ArrayList<>();
 		String nome;
 		Jogador jogador;
@@ -116,7 +124,7 @@ public class Jogo {
 		pilha = new ArrayList<Carta>();
 		pilha.add(baralho.tirarCarta());
 		estado = new Estado(jogadores.get(indiceJogadorAtual), pilha.get(pilha.size() - 1), sentido, baralho);
-		System.out.println(estado.toString());
+		// System.out.println(estado.toString());
 		indiceJogadorAtual = -1;
 	}
 

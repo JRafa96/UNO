@@ -50,12 +50,15 @@ public class WildCard extends CartaEspecial {
 	 * A��o que a carta vai realizar no <code>jogo</code>.
 	 * 
 	 * @throws Mais_4 se a carta for do tipo MAIS_4
+	 * @throws MudaCor se a carta for do tipo MudaCor
 	 */
 	@Override
 	public void açao() throws Exception{
-		mudarCor();
+		Cor cor=mudarCor();
 		if(tipo == Tipo.MAIS_4) {
-			throw new Mais_4();
+			throw new Mais_4(cor);
+		}else {
+			throw new MudaCor(cor);
 		}
 		
 	}
