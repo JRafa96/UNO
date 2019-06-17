@@ -98,7 +98,7 @@ class BaralhoTeste {
 		Carta instancia;
 		int[] expected = new int[] { 4, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 4, 4 };
 		int[] quantas = new int[15];
-		 for (int i = 0; i < 108; i++) {
+		for (int i = 0; i < 108; i++) {
 
 			instancia = B1.getBaralho().get(i);
 			if (instancia instanceof CartaNumero) {
@@ -145,77 +145,59 @@ class BaralhoTeste {
 				case PROIBIDO:
 					quantas[12] += 1;
 				}
-			}else if (instancia instanceof WildCard) {
-			switch (((WildCard) instancia).getTipo()) {
-			case MAIS_4:
-				quantas[13] += 1;
-				break;
-			case MUDAR_COR:
-				quantas[14] += 1;
-				break;
+			} else if (instancia instanceof WildCard) {
+				switch (((WildCard) instancia).getTipo()) {
+				case MAIS_4:
+					quantas[13] += 1;
+					break;
+				case MUDAR_COR:
+					quantas[14] += 1;
+					break;
+				}
 			}
-		}
 		}
 		assertArrayEquals(expected, quantas);
 	}
+
 	@Test
 	@DisplayName("╯°□°）╯ Quantas Cartas iguais")
 	void Testar_cartas() {
 		Baralho B1 = new Baralho();
-		Carta instancia;		   /*R,G,Y,B*/
-		int[][] expected = new int[][] {{1,2,2,2,2,2,2,2,2,2,2,2,2},{1,2,2,2,2,2,2,2,2,2,2,2,2},{1,2,2,2,2,2,2,2,2,2,2,2,2},{1,2,2,2,2,2,2,2,2,2,2,2,2}};
+		Carta instancia;
+		int[][] expected = new int[][] { { 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2 },
+				{ 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2 }, { 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2 },
+				{ 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2 } };
 		int[][] reality = new int[4][13];
 		/*
-		for (int i = 0; i < 108; i++) {
-			
-			instancia = B1.getBaralho().get(i);
-			if (instancia instanceof CartaNumero) {
-				switch (((CartaNumero) instancia).getNumero()) {
-				case 0:
-					[0] += 1;
-					break;
-				case 1:
-					quantas[1] += 1;
-					break;
-				case 2:
-					quantas[2] += 1;
-					break;
-				case 3:
-					quantas[3] += 1;
-					break;
-				case 4:
-					quantas[4] += 1;
-					break;
-				case 5:
-					quantas[5] += 1;
-					break;
-				case 6:
-					quantas[6] += 1;
-					break;
-				case 7:
-					quantas[7] += 1;
-					break;
-				case 8:
-					quantas[8] += 1;
-					break;
-				case 9:
-					quantas[9] += 1;
-					break;
-				}
-			} else if (instancia instanceof ActionCard) {
-				switch (((ActionCard) instancia).getTipo()) {
-				case INVERTER_SENTIDO:
-					quantas[10] += 1;
-					break;
-				case MAIS_2:
-					quantas[11] += 1;
-					break;
-				case PROIBIDO:
-					quantas[12] += 1;
+		 * 
+		 */
+
+		for (int i = 0; i < 4; i++) {
+
+			for (int j = 0; j < 108; j++) {
+				instancia = B1.getBaralho().get(i);
+				if (instancia instanceof CartaNumero) {
+					reality[i][(((CartaNumero) instancia).getNumero())] += 1;
+				} else if (instancia instanceof ActionCard) {
+					switch (((ActionCard) instancia).getTipo()) {
+					case INVERTER_SENTIDO:
+						reality[i][10] += 1;
+						break;
+					case MAIS_2:
+						reality[i][11] += 1;
+						break;
+					case PROIBIDO:
+						reality[i][12] += 1;
+						break;
+					}
 				}
 			}
-		}*/
+		}
 		assertArrayEquals(expected, reality);
 	}
 
+	@Test
+	@DisplayName("╯°□°）╯ Quantas Cartas iguais")
+	void Testar_n1_valida() {
+	}
 }

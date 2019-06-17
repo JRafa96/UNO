@@ -32,7 +32,7 @@ public class Jogo {
 	}
 	
 	public void jogar() {
-		começarJogo();
+		comeÃ§arJogo();
 		Jogador jogadorAtual;
 		Carta carta;
 		do {
@@ -49,7 +49,7 @@ public class Jogo {
 			if (!(carta instanceof CartaNumero)) {
 				Jogador proximoJogador=jogadores.get(indiceProximoJogador());
 				try {
-					((CartaEspecial) carta).açao();
+					((CartaEspecial) carta).aÃ§ao();
 				} catch (Mais_4 m4) {
 					mandarBuscar(jogadorAtual, proximoJogador, 4);
 				} catch (Mais_2 m2) {
@@ -69,13 +69,13 @@ public class Jogo {
 		System.out.println("O jogador "+jogadorAtual.getNome()+" mandou o jogador "+proximoJogador.getNome()+" ir buscar 4 cartas");
 	}
 	
-	private void começarJogo() {
+	private void comeÃ§arJogo() {
 		sentido = Sentido.DIREITA;
 		baralho = new Baralho();
 		Scanner scan = new Scanner(System.in);
 		int quantos;
 		do {
-			System.out.println("Quantos jogadores vão jogar ?");
+			System.out.println("Quantos jogadores vï¿½o jogar ?");
 			quantos = scan.nextInt();
 			if (quantos <= 1) {
 				System.out.println("O numero de jogadores tem de ser maior que 1");
