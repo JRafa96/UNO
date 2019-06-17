@@ -3,6 +3,13 @@ package jogo;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * A classe <code> Jogador </code> serve para representar quais são os jogadores que
+ * estão a jogar e 
+ * 
+ * @author quinz
+ *
+ */
 public class Jogador {
 	private String nome;
 	private ArrayList<Carta> mao = new ArrayList<Carta>();
@@ -17,25 +24,45 @@ public class Jogador {
 		this.proibido = proibido;
 	}
 
+	/**
+	 * Método de acesso (leitura) do nome do Jogador
+	 * @return
+	 */
 	public String getNome() {
 		return nome;
 	}
-
+	
+/**
+ * Método de acesso (leitura) do registo das cartas mão
+ * @return
+ */
 	public ArrayList<Carta> getMao() {
 		return mao;
 	}
-
+/**
+ * Método de acesso (leitura) do registo das cartas jogaveis
+ * @return
+ */
 	public ArrayList<Carta> getJogaveis() {
 		return jogaveis;
 	}
 
+	/**
+	 * Constrói um objeto da classe <code> Jogador </code>
+	 */
 	public Jogador() {
 	}
 
+	/**
+	 * 	 
+	 * Constrói um objeto da classe <code> Jogador </code>
+	 * @param nome Identificador do Jogador
+	 */
 	public Jogador(String nome) {
 		this.nome = nome;
 
 	}
+
 
 	private String getJogaveisString() {
 		return jogaveis.toString();
@@ -61,7 +88,12 @@ public class Jogador {
 	public void receberCartas(ArrayList<Carta> cartas) {
 		mao.addAll(cartas);
 	}
-
+	
+/**
+ * Método que verifica se a mão está vazia
+ * 
+ * @return
+ */
 	public boolean isVazia() {
 		if (mao.size() == 0) {
 			return true;
@@ -70,11 +102,22 @@ public class Jogador {
 		}
 	}
 
+	/**
+	 * Método que move as cartas que estão na mão para o arraylist das jogaveis
+	 * 
+	 * @param pos Valor que indica qual é a posição que a carta está na mão
+	 */
 	private void moverJogaveis(int pos) {
 		jogaveis.add(mao.get(pos));
 		mao.remove(pos);
 	}
 	
+	/**
+	 * Método que verifica se as cartas da mão são jogevis, caso forem, move
+	 * a carta da mão para o arraylist das jogaveis
+	 * 
+	 * @param estado Devolve a o estado atual da carta que está no jogo
+	 */
 	public void verificarJogaveis(Estado estado) {
 		mao.addAll(jogaveis);
 		jogaveis.clear();
