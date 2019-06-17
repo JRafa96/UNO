@@ -58,7 +58,7 @@ public class ActionCard extends CartaEspecial {
 	
 	@Override
 	public String toString() {
-		String nome=tipo==Tipo.COR?tipo.name():"";
+		String nome=tipo==Tipo.COR?"":tipo.name();
 		return nome+" "+cor.name();
 	}
 }
