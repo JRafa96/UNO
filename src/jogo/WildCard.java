@@ -3,9 +3,9 @@ package jogo;
 import java.util.Scanner;
 
 /**
- * A classe <code>ActionCard</code> é constituida por um tipo e uma ação que vai
+ * A classe <code>ActionCard</code> ï¿½ constituida por um tipo e uma aï¿½ï¿½o que vai
  * ser determinada de acordo com o seu tipo.
- * @author João Rafael
+ * @author Joï¿½o Rafael
  *
  */
 public class WildCard extends CartaEspecial {
@@ -22,7 +22,7 @@ public class WildCard extends CartaEspecial {
 	}
 
 	/**
-	 * Método de acesso (leitura) ao tipo da carta.
+	 * Mï¿½todo de acesso (leitura) ao tipo da carta.
 	 * @return
 	 */
 	public Tipo getTipo() {
@@ -30,7 +30,7 @@ public class WildCard extends CartaEspecial {
 	}
 
 	/**
-	 * Método chamado pelo jogo que vai pedir ao utilizador para introduzir uma cor.
+	 * Mï¿½todo chamado pelo jogo que vai pedir ao utilizador para introduzir uma cor.
 	 * @return cor
 	 */
 	private Cor mudarCor() {
@@ -46,12 +46,12 @@ public class WildCard extends CartaEspecial {
 
 
 	/**
-	 * Ação que a carta vai realizar no <code>jogo</code>.
+	 * Aï¿½ï¿½o que a carta vai realizar no <code>jogo</code>.
 	 * 
 	 * @throws Mais_4 se a carta for do tipo MAIS_4
 	 */
 	@Override
-	public void açao() throws Exception{
+	public void aÃ§ao() throws Exception{
 		mudarCor();
 		if(tipo == Tipo.MAIS_4) {
 			throw new Mais_4();

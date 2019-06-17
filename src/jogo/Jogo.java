@@ -4,18 +4,15 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Jogo {
-	private ArrayList<Jogador> jogadores;
-	private ArrayList<Carta> pilha;
-	private Baralho baralho;
-	private Estado estado;
-	private Sentido sentido;
-	private int indiceJogadorAtual;
-
-	public Jogo() {
-	};
+	ArrayList<Jogador> jogadores;
+	ArrayList<Carta> pilha;
+	Baralho baralho;
+	Estado estado;
+	Sentido sentido;
+	int indiceJogadorAtual;
 
 	private int indiceProximoJogador() {
-		int indexJogador = indiceJogadorAtual;
+		int indexJogador=indiceJogadorAtual;
 		int nextI = sentido.ordinal();
 		if (indexJogador + nextI < 0) {
 			indexJogador = jogadores.size() - 1;
@@ -23,18 +20,19 @@ public class Jogo {
 			indexJogador = 0;
 		} else {
 			indexJogador += nextI;
+
 		}
 		return indexJogador;
 	}
 
 	private Jogador proximoJogador() {
-		indiceJogadorAtual = indiceProximoJogador();
-		Jogador jogador = jogadores.get(indiceJogadorAtual);
+		indiceJogadorAtual=indiceProximoJogador();
+		Jogador jogador=jogadores.get(indiceJogadorAtual);
 		return jogador;
 	}
-
+	
 	public void jogar() {
-		começarJogo();
+		comeÃ§arJogo();
 		Jogador jogadorAtual;
 		Carta carta;
 		do {
@@ -45,12 +43,13 @@ public class Jogo {
 				jogadorAtual.verificarJogaveis(estado);
 			}
 			carta = jogadorAtual.jogarCarta(estado);
-			System.out.println(jogadorAtual.getNome() + " jogou " + carta.toString());
-
+			pilha.add(carta);
+			estado.setCarta(carta);
+			System.out.println(jogadorAtual.getNome() + " jogou " + pilha.get(0).toString());
 			if (!(carta instanceof CartaNumero)) {
-				Jogador proximoJogador = jogadores.get(indiceProximoJogador());
+				Jogador proximoJogador=jogadores.get(indiceProximoJogador());
 				try {
-					((CartaEspecial) carta).açao();
+					((CartaEspecial) carta).aÃ§ao();
 				} catch (Mais_4 m4) {
 					mandarBuscar(jogadorAtual, proximoJogador, 4);
 				} catch (Mais_2 m2) {
@@ -58,42 +57,49 @@ public class Jogo {
 				} catch (Proibido proibir) {
 					mandarBuscar(jogadorAtual, proximoJogador, 2);
 				} catch (Inverter_Sentido inverter_Sentido) {
-					//
+					trocarSentido();
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
-			pilha.add(carta);
-			estado.setCarta(carta);
-		} while (jogadorAtual.getMao().size() >= 0 && jogadorAtual.getJogaveis().size() >= 0);
+		} while (jogadorAtual.getMao().size() >= 0&& jogadorAtual.getJogaveis().size() >= 0);
 		System.out.println("O jogo acabou!!");
 	}
 
-	public void mandarBuscar(Jogador jogadorAtual, Jogador proximoJogador, int quantas) {
+	private void mandarBuscar(Jogador jogadorAtual, Jogador proximoJogador, int quantas) {
 		proximoJogador.receberCartas(baralho.tirarCartas(quantas));
 		proibirProximo();
 		System.out.println("O jogador " + jogadorAtual.getNome() + " mandou o jogador " + proximoJogador.getNome()
 				+ " ir buscar 4 cartas");
 	}
 
-	public void proibirProximo() {
+	private void proibirProximo() {
 		Jogador proximoJogador = jogadores.get(indiceProximoJogador());
 		proximoJogador.setProibido(true);
+		System.out.println("O jogador "+jogadorAtual.getNome()+" mandou o jogador "+proximoJogador.getNome()+" ir buscar 4 cartas");
 	}
 
-	private void começarJogo() {
+	private void trocarSentido() {
+		if(sentido==Sentido.DIREITA) {
+			sentido=Sentido.ESQUERDA;
+		}else {
+			sentido=Sentido.DIREITA;
+		}
+	}
+	
+	private void comeÃ§arJogo() {
 		sentido = Sentido.DIREITA;
 		baralho = new Baralho();
 		Scanner scan = new Scanner(System.in);
 		int quantos;
 		do {
-			System.out.println("Quantos jogadores vão jogar ?");
+			System.out.println("Quantos jogadores vï¿½o jogar ?");
 			quantos = scan.nextInt();
-			if (quantos <= 1 || quantos > 10) {
+			if (quantos <= 1 || quantos >10) {
 				System.out.println("O numero de jogadores tem de ser maior que 1 e menor que 10");
 			}
-		} while (quantos <= 1 || quantos > 10);
+		} while (quantos <= 1 || quantos >10);
 		jogadores = new ArrayList<>();
 		String nome;
 		Jogador jogador;

@@ -118,13 +118,4 @@ public class Jogador {
 			}
 		}
 	}
-
-	
-	@Override
-	public String toString() {
-		String separador = "\n+----------------------------------------------+\n";
-		return separador + "Jogador: +" + nome + "\n Cartas na mão: " + mao + "\n Cartas jogáveis: " + jogaveis;
-	}
-
-
 }

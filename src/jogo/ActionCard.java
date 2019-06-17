@@ -1,9 +1,9 @@
 package jogo;
 
 /**
- * A classe <code>ActionCard</code> é constituida por um tipo 
- * (Mais_2, Inverter_Sentido e Proibido), uma cor e uma ação que é determinada pelo tipo.
- * @author João Rafael
+ * A classe <code>ActionCard</code> ï¿½ constituida por um tipo 
+ * (Mais_2, Inverter_Sentido e Proibido), uma cor e uma aï¿½ï¿½o que ï¿½ determinada pelo tipo.
+ * @author Joï¿½o Rafael
  *
  */
 public class ActionCard extends CartaEspecial {
@@ -23,7 +23,7 @@ public class ActionCard extends CartaEspecial {
 	}
 
 	/**
-	 * Método de acesso (leitura) ao tipo da carta.
+	 * Mï¿½todo de acesso (leitura) ao tipo da carta.
 	 * @return tipo
 	 */
 	public Tipo getTipo() {
@@ -31,7 +31,7 @@ public class ActionCard extends CartaEspecial {
 	}
 
 	/**
-	 * Método de acesso (leitura) à cor da carta.
+	 * Mï¿½todo de acesso (leitura) ï¿½ cor da carta.
 	 * @return cor
 	 */
 	public Cor getCor() {
@@ -39,14 +39,14 @@ public class ActionCard extends CartaEspecial {
 	}
 
 	/**
-	 *Ação que a carta vai realizar no <code>jogo</code>.
+	 *Aï¿½ï¿½o que a carta vai realizar no <code>jogo</code>.
 	 * 
 	 *@throws Mais_2 se a carta for do tipo MAIS_2
 	 *@throws Inverter_Sentido se a carta for do tipo INVERTER_SENTIDO
 	 *@throws Proibido se a carta for do tipo PROIBIDO
 	 */
 	@Override
-	public void açao() throws Exception{
+	public void aÃ§ao() throws Exception{
 		if(tipo == Tipo.MAIS_2) {
 			throw new Mais_2();
 		} else if (tipo == Tipo.INVERTER_SENTIDO) {

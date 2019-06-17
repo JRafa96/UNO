@@ -8,9 +8,10 @@ public class Testes {
 	
 	public static void main(String[] args) {
 		
-		Jogo jogo = new Jogo();
+		Cor cor = Cor.values()[1];
 		
-		jogo.jogar();
+		System.out.println(cor);
+		
 		
 		
 	}
