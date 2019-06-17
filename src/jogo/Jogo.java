@@ -87,6 +87,7 @@ public class Jogo {
 		}else {
 			sentido=Sentido.DIREITA;
 		}
+		System.out.println(jogadores.get(indiceJogadorAtual)+" alterou o sentido do Jogo");
 	}
 	
 	private void começarJogo() {
