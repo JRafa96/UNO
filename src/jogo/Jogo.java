@@ -66,6 +66,9 @@ public class Jogo {
 				}
 			}
 			estado.setCarta(carta);
+			estado.setBaralhoAtual(baralho);
+			estado.setJogadorAtual(jogadorAtual);
+			estado.setSentidoAtual(sentido);
 			System.out.println(jogadorAtual.getNome() + " jogou " + pilha.get(pilha.size() - 1).toString());
 		} while (jogadorAtual.getMao().size() >= 0 && jogadorAtual.getJogaveis().size() >= 0);
 		System.out.println("O jogo acabou!!");

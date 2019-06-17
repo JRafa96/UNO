@@ -7,6 +7,36 @@ public class Estado {
 	Sentido sentidoAtual;
 	Baralho baralhoAtual;
 	
+	
+	
+	public Jogador getJogadorAtual() {
+		return jogadorAtual;
+	}
+
+	public void setJogadorAtual(Jogador jogadorAtual) {
+		this.jogadorAtual = jogadorAtual;
+	}
+
+	public Sentido getSentidoAtual() {
+		return sentidoAtual;
+	}
+
+	public void setSentidoAtual(Sentido sentidoAtual) {
+		this.sentidoAtual = sentidoAtual;
+	}
+
+	public Baralho getBaralhoAtual() {
+		return baralhoAtual;
+	}
+
+	public void setBaralhoAtual(Baralho baralhoAtual) {
+		this.baralhoAtual = baralhoAtual;
+	}
+
+	public Carta getCartaAtual() {
+		return cartaAtual;
+	}
+
 	public void setCarta(Carta carta) {
 		if (carta instanceof WildCard) {
 			cartaAtual=new WildCard(((WildCard) carta).getTipo());
