@@ -77,7 +77,7 @@ public class Jogo {
 	private void proibirProximo() {
 		Jogador proximoJogador = jogadores.get(indiceProximoJogador());
 		proximoJogador.setProibido(true);
-		System.out.println("O jogador "+jogadorAtual.getNome()+" mandou o jogador "+proximoJogador.getNome()+" ir buscar 4 cartas");
+		System.out.println("O jogador "+jogadores.get(indiceJogadorAtual).getNome()+" mandou o jogador "+proximoJogador.getNome()+" ir buscar 4 cartas");
 	}
 
 	private void trocarSentido() {
