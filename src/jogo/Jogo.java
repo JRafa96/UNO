@@ -40,6 +40,9 @@ public class Jogo {
 			estado.setJogadorAtual(jogadorAtual);
 			jogadorAtual.verificarJogaveis(estado);
 			while (jogadorAtual.getJogaveis().size() <= 0) {
+				if(baralho.getBaralho().size() == 0) {
+					baralho.transferirPilha(pilha);
+				}
 				jogadorAtual.receberCarta(baralho.tirarCarta());
 				jogadorAtual.verificarJogaveis(estado);
 			}
