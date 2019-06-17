@@ -4,13 +4,13 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 
-import com.sun.jndi.url.corbaname.corbanameURLContextFactory;
 
 import jogo.*;
 
-class BaralhoTeste {
+class BaralhoTeste{
 
 	@BeforeEach
 	void setUp() throws Exception {
@@ -140,9 +140,7 @@ class BaralhoTeste {
 				{ 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2 }, { 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2 },
 				{ 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2 } };
 
-		int[][] reality = new int[][] { { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-				{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-				{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 } };
+		int[][] reality = new int[4][13] ;
 		for (int i = 0; i < 4; i++) {
 			for (int j = 0; j < 108; j++) {
 				instancia = B1.getBaralho().get(j);
@@ -170,11 +168,19 @@ class BaralhoTeste {
 		assertArrayEquals(expected, reality);
 	}
 
-	@Test
+	@RepeatedTest(108)
 	@DisplayName("╯°□°）╯ Primeira Carta Baralho Valida")
 	void Testar_n1_valida() {
 		Carta c1;
 		Baralho B1 = new Baralho();
+		c1 = B1.getBaralho().get(0);
+		while (!(c1 instanceof CartaNumero)) {
+			c1 = B1.getBaralho().get(0);
+			B1.getBaralho().add(c1);
+			B1.getBaralho().remove(0);
+			c1=B1.getBaralho().get(0);
+		}
+		System.out.println(c1);
 		c1 = B1.tirarCarta();
 		assertTrue(c1 instanceof CartaNumero == true);
 	}
