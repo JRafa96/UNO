@@ -70,7 +70,8 @@ public class Jogador {
 
 	public Carta jogarCarta(Estado estado) {
 		verificarJogaveis(estado);
-		System.out.println(getJogaveisString());
+		System.out.println("mão : "+mao.toString());
+		System.out.println("jogaveis : "+getJogaveisString());
 		System.out.println("Que carta quer jogar?");
 		Scanner LerS = new Scanner(System.in);
 		int n = LerS.nextInt();
