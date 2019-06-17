@@ -71,7 +71,7 @@ public class Jogo {
 		proximoJogador.receberCartas(baralho.tirarCartas(quantas));
 		proibirProximo();
 		System.out.println("O jogador " + jogadorAtual.getNome() + " mandou o jogador " + proximoJogador.getNome()
-				+ " ir buscar 4 cartas");
+				+ " ir buscar " + quantas + " cartas");
 	}
 
 	private void proibirProximo() {
@@ -94,7 +94,7 @@ public class Jogo {
 		Scanner scan = new Scanner(System.in);
 		int quantos;
 		do {
-			System.out.println("Quantos jogadores v�o jogar ?");
+			System.out.println("Quantos jogadores vão jogar ?");
 			quantos = scan.nextInt();
 			if (quantos <= 1 || quantos >10) {
 				System.out.println("O numero de jogadores tem de ser maior que 1 e menor que 10");
