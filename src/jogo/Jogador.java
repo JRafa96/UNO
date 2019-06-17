@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
- * A classe <code> Jogador </code> serve para representar quais são os jogadores que
- * estão a jogar e 
+ * A classe <code> Jogador </code> serve para representar quais sï¿½o os jogadores que
+ * estï¿½o a jogar e 
  * 
  * @author quinz
  *
@@ -25,7 +25,7 @@ public class Jogador {
 	}
 
 	/**
-	 * Método de acesso (leitura) do nome do Jogador
+	 * Mï¿½todo de acesso (leitura) do nome do Jogador
 	 * @return
 	 */
 	public String getNome() {
@@ -33,14 +33,14 @@ public class Jogador {
 	}
 	
 /**
- * Método de acesso (leitura) do registo das cartas mão
+ * Mï¿½todo de acesso (leitura) do registo das cartas mï¿½o
  * @return
  */
 	public ArrayList<Carta> getMao() {
 		return mao;
 	}
 /**
- * Método de acesso (leitura) do registo das cartas jogaveis
+ * Mï¿½todo de acesso (leitura) do registo das cartas jogaveis
  * @return
  */
 	public ArrayList<Carta> getJogaveis() {
@@ -48,14 +48,14 @@ public class Jogador {
 	}
 
 	/**
-	 * Constrói um objeto da classe <code> Jogador </code>
+	 * Constrï¿½i um objeto da classe <code> Jogador </code>
 	 */
 	public Jogador() {
 	}
 
 	/**
 	 * 	 
-	 * Constrói um objeto da classe <code> Jogador </code>
+	 * Constrï¿½i um objeto da classe <code> Jogador </code>
 	 * @param nome Identificador do Jogador
 	 */
 	public Jogador(String nome) {
@@ -90,7 +90,7 @@ public class Jogador {
 	}
 	
 /**
- * Método que verifica se a mão está vazia
+ * Mï¿½todo que verifica se a mï¿½o estï¿½ vazia
  * 
  * @return
  */
@@ -103,9 +103,9 @@ public class Jogador {
 	}
 
 	/**
-	 * Método que move as cartas que estão na mão para o arraylist das jogaveis
+	 * Mï¿½todo que move as cartas que estï¿½o na mï¿½o para o arraylist das jogaveis
 	 * 
-	 * @param pos Valor que indica qual é a posição que a carta está na mão
+	 * @param pos Valor que indica qual ï¿½ a posiï¿½ï¿½o que a carta estï¿½ na mï¿½o
 	 */
 	private void moverJogaveis(int pos) {
 		jogaveis.add(mao.get(pos));
@@ -113,10 +113,10 @@ public class Jogador {
 	}
 	
 	/**
-	 * Método que verifica se as cartas da mão são jogevis, caso forem, move
-	 * a carta da mão para o arraylist das jogaveis
+	 * Mï¿½todo que verifica se as cartas da mï¿½o sï¿½o jogevis, caso forem, move
+	 * a carta da mï¿½o para o arraylist das jogaveis
 	 * 
-	 * @param estado Devolve a o estado atual da carta que está no jogo
+	 * @param estado Devolve a o estado atual da carta que estï¿½ no jogo
 	 */
 	public void verificarJogaveis(Estado estado) {
 		mao.addAll(jogaveis);
@@ -155,10 +155,16 @@ public class Jogador {
 					}
 				}
 
-			} else if (mao.get(j) instanceof WildCard) { // instanceof verifica se é uma classe daquele tipo
+			} else if (mao.get(j) instanceof WildCard) { // instanceof verifica se ï¿½ uma classe daquele tipo
 				moverJogaveis(j);
 				j--;
 			}
 		}
+	}
+
+	@Override
+	public String toString() {
+		String separador = "\n+----------------------------------------------+\n";
+		return separador + "Jogador: +" + nome + "\n Cartas na mï¿½o: " + mao + "\n Cartas jogï¿½veis: " + jogaveis;
 	}
 }
