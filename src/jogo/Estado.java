@@ -19,9 +19,9 @@ public class Estado {
 	
 	@Override
 	public String toString() {
-		return "O jogador atual � o " + jogadorAtual.getNome() +
-				"\nA carta em jogo � o " + cartaAtual.toString() + 
-				"\nO jogo est� a rodar para a " + sentidoAtual.name() + 
+		return "O jogador atual é o " + jogadorAtual.getNome() +
+				"\nA carta em jogo é o " + cartaAtual.toString() + 
+				"\nO jogo está a rodar para a " + sentidoAtual.name() + 
 				"\nRestam " + baralhoAtual.getBaralho().size()+ " cartas no baralho"; 
 	}
 	

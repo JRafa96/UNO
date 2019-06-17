@@ -71,13 +71,13 @@ public class Jogo {
 		proximoJogador.receberCartas(baralho.tirarCartas(quantas));
 		proibirProximo();
 		System.out.println("O jogador " + jogadorAtual.getNome() + " mandou o jogador " + proximoJogador.getNome()
-				+ " ir buscar 4 cartas");
+				+ " ir buscar " + quantas + " cartas.\n");
 	}
 
 	private void proibirProximo() {
 		Jogador proximoJogador = jogadores.get(indiceProximoJogador());
 		proximoJogador.setProibido(true);
-		System.out.println("O jogador "+jogadorAtual.getNome()+" mandou o jogador "+proximoJogador.getNome()+" ir buscar 4 cartas");
+		System.out.println("O jogador "+jogadores.get(indiceJogadorAtual).getNome()+" proibiu o jogador "+proximoJogador.getNome()+" de jogar!\n");
 	}
 
 	private void trocarSentido() {
@@ -94,7 +94,7 @@ public class Jogo {
 		Scanner scan = new Scanner(System.in);
 		int quantos;
 		do {
-			System.out.println("Quantos jogadores v�o jogar ?");
+			System.out.println("Quantos jogadores vão jogar ?");
 			quantos = scan.nextInt();
 			if (quantos <= 1 || quantos >10) {
 				System.out.println("O numero de jogadores tem de ser maior que 1 e menor que 10");
