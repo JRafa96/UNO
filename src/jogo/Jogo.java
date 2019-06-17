@@ -44,8 +44,6 @@ public class Jogo {
 			}
 			carta = jogadorAtual.jogarCarta(estado);
 			pilha.add(carta);
-			estado.setCarta(carta);
-			System.out.println(jogadorAtual.getNome() + " jogou " + pilha.get(0).toString());
 			if (!(carta instanceof CartaNumero)) {
 				Jogador proximoJogador=jogadores.get(indiceProximoJogador());
 				try {
@@ -63,6 +61,8 @@ public class Jogo {
 					e.printStackTrace();
 				}
 			}
+			estado.setCarta(carta);
+			System.out.println(jogadorAtual.getNome() + " jogou " + pilha.get(pilha.size()-1).toString());
 		} while (jogadorAtual.getMao().size() >= 0&& jogadorAtual.getJogaveis().size() >= 0);
 		System.out.println("O jogo acabou!!");
 	}

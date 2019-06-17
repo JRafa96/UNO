@@ -165,6 +165,6 @@ public class Jogador {
 	@Override
 	public String toString() {
 		String separador = "\n+----------------------------------------------+\n";
-		return separador + "Jogador: " + nome + "\n Cartas na m�o: " + mao + "\n Cartas jog�veis: " + jogaveis;
+		return separador + "Jogador: " + nome + "\n Cartas na mao: " + mao + "\n Cartas jogaveis: " + jogaveis;
 	}
 }
