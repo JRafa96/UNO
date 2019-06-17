@@ -37,39 +37,46 @@ public class Jogo {
 		Carta carta;
 		do {
 			jogadorAtual = proximoJogador();
+			estado.setJogadorAtual(jogadorAtual);
 			jogadorAtual.verificarJogaveis(estado);
 			while (jogadorAtual.getJogaveis().size() <= 0) {
 				jogadorAtual.receberCarta(baralho.tirarCarta());
 				jogadorAtual.verificarJogaveis(estado);
 			}
 			System.out.println(estado.toString());
-			carta = jogadorAtual.jogarCarta(estado);
-			pilha.add(carta);
-			if (!(carta instanceof CartaNumero)) {
-				Jogador proximoJogador = jogadores.get(indiceProximoJogador());
-				try {
-					((CartaEspecial) carta).açao();
-				} catch (Mais_4 m4) {
-					mandarBuscar(jogadorAtual, proximoJogador, 4);
-					mudarCor(m4.getCor());
-				} catch (Mais_2 m2) {
-					mandarBuscar(jogadorAtual, proximoJogador, 2);
-				} catch (Proibido proibir) {
-					proximoJogador();
-				} catch (Inverter_Sentido inverter_Sentido) {
-					trocarSentido();
-				} catch (MudaCor mudaCor) {
-					mudarCor(mudaCor.getCor());
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+			if(!(jogadorAtual.isProibido())) {
+				
+				carta = jogadorAtual.jogarCarta(estado);
+				pilha.add(carta);
+				if (!(carta instanceof CartaNumero)) {
+					Jogador proximoJogador = jogadores.get(indiceProximoJogador());
+					try {
+						((CartaEspecial) carta).açao();
+					} catch (Mais_4 m4) {
+						mandarBuscar(jogadorAtual, proximoJogador, 4);
+						mudarCor(m4.getCor());
+					} catch (Mais_2 m2) {
+						mandarBuscar(jogadorAtual, proximoJogador, 2);
+					} catch (Proibido proibir) {
+						proximoJogador();
+					} catch (Inverter_Sentido inverter_Sentido) {
+						trocarSentido();
+					} catch (MudaCor mudaCor) {
+						mudarCor(mudaCor.getCor());
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 				}
+				if(!(carta instanceof WildCard)) {
+					estado.setCarta(carta);
+				}
+				estado.setBaralhoAtual(baralho);
+				estado.setSentidoAtual(sentido);
+				
+				System.out.println(jogadorAtual.getNome() + " jogou " + pilha.get(pilha.size() - 1).toString());
 			}
-			estado.setCarta(carta);
-			estado.setBaralhoAtual(baralho);
-			estado.setJogadorAtual(jogadorAtual);
-			estado.setSentidoAtual(sentido);
-			System.out.println(jogadorAtual.getNome() + " jogou " + pilha.get(pilha.size() - 1).toString());
+			jogadorAtual.setProibido(false);
 		} while (jogadorAtual.getMao().size() >= 0 && jogadorAtual.getJogaveis().size() >= 0);
 		System.out.println("O jogo acabou!!");
 	}
