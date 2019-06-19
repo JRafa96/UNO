@@ -10,25 +10,39 @@ public class Jogo {
 	Estado estado;
 	Sentido sentido;
 	int indiceJogadorAtual;
+	
+	public Jogo() {
+		jogadores = new ArrayList<>();
+		baralho = new Baralho();
+		pilha = new ArrayList<Carta>();
+		sentido = Sentido.DIREITA;
+		indiceJogadorAtual = 0;
+	}
+
+	private void avancarJogador() {
+		indiceJogadorAtual = indiceProximoJogador();
+		if (jogadores.get(indiceJogadorAtual).isProibido()) {
+			jogadores.get(indiceJogadorAtual).setProibido(false);
+			indiceJogadorAtual = indiceProximoJogador();
+		}
+	}
 
 	private int indiceProximoJogador() {
 		int indexJogador = indiceJogadorAtual;
-		int nextI = sentido.ordinal();
+		int nextI = sentido.getnSentido();
 		if (indexJogador + nextI < 0) {
-			indexJogador = jogadores.size() - 1;
+			return jogadores.size() - 1;
 		} else if (indexJogador + nextI >= jogadores.size()) {
-			indexJogador = 0;
+			return 0;
 		} else {
-			indexJogador += nextI;
+			return indexJogador + nextI;
 
 		}
-		return indexJogador;
 	}
 
 	private Jogador proximoJogador() {
 		indiceJogadorAtual = indiceProximoJogador();
-		Jogador jogador = jogadores.get(indiceJogadorAtual);
-		return jogador;
+		return jogadores.get(indiceJogadorAtual);
 	}
 
 	public void jogar() {
@@ -36,19 +50,20 @@ public class Jogo {
 		Jogador jogadorAtual;
 		Carta carta;
 		do {
-			jogadorAtual = proximoJogador();
+			avancarJogador();
+			jogadorAtual = jogadores.get(indiceJogadorAtual);
 			estado.setJogadorAtual(jogadorAtual);
 			jogadorAtual.verificarJogaveis(estado);
 			while (jogadorAtual.getJogaveis().size() <= 0) {
-				if(baralho.getBaralho().size() == 0) {
+				if (baralho.getBaralho().size() == 0) {
 					baralho.transferirPilha(pilha);
 				}
 				jogadorAtual.receberCarta(baralho.tirarCarta());
 				jogadorAtual.verificarJogaveis(estado);
 			}
 			System.out.println(estado.toString());
-			if(!(jogadorAtual.isProibido())) {
-				
+			if (!(jogadorAtual.isProibido())) {
+
 				carta = jogadorAtual.jogarCarta(estado);
 				pilha.add(carta);
 				if (!(carta instanceof CartaNumero)) {
@@ -71,12 +86,12 @@ public class Jogo {
 						e.printStackTrace();
 					}
 				}
-				if(!(carta instanceof WildCard)) {
+				if (!(carta instanceof WildCard)) {
 					estado.setCarta(carta);
 				}
 				estado.setBaralhoAtual(baralho);
 				estado.setSentidoAtual(sentido);
-				
+
 				System.out.println(jogadorAtual.getNome() + " jogou " + pilha.get(pilha.size() - 1).toString());
 			}
 			jogadorAtual.setProibido(false);
@@ -94,7 +109,7 @@ public class Jogo {
 	private void proibirProximo() {
 		Jogador proximoJogador = jogadores.get(indiceProximoJogador());
 		proximoJogador.setProibido(true);
-		System.out.println("O jogador " + jogadores.get(indiceJogadorAtual).getNome() + " proibiu o jogador "
+		System.out.println("\n O jogador " + jogadores.get(indiceJogadorAtual).getNome() + " proibiu o jogador "
 				+ proximoJogador.getNome() + " de jogar!\n");
 	}
 
@@ -108,12 +123,10 @@ public class Jogo {
 		} else {
 			sentido = Sentido.DIREITA;
 		}
-		System.out.println(jogadores.get(indiceJogadorAtual) + " alterou o sentido do Jogo");
+		System.out.println(jogadores.get(indiceJogadorAtual).getNome() + " alterou o sentido do Jogo");
 	}
 
 	private void começarJogo() {
-		sentido = Sentido.DIREITA;
-		baralho = new Baralho();
 		Scanner scan = new Scanner(System.in);
 		int quantos;
 		do {
@@ -123,7 +136,6 @@ public class Jogo {
 				System.out.println("O numero de jogadores tem de ser maior que 1 e menor que 10");
 			}
 		} while (quantos <= 1 || quantos > 10);
-		jogadores = new ArrayList<>();
 		String nome;
 		Jogador jogador;
 		for (int i = 0; i < quantos; i++) {
@@ -134,18 +146,17 @@ public class Jogo {
 			jogadores.add(jogador);
 		}
 		baralho.validarPrimeiraCarta();
-		pilha = new ArrayList<Carta>();
 		pilha.add(baralho.tirarCarta());
 		estado = new Estado(jogadores.get(indiceJogadorAtual), pilha.get(pilha.size() - 1), sentido, baralho);
 		// System.out.println(estado.toString());
-		indiceJogadorAtual = -1;
+		indiceJogadorAtual = jogadores.size();
 	}
 
-	public Carta distribuirCarta() {
+	private Carta distribuirCarta() {
 		return baralho.tirarCarta();
 	}
 
-	public ArrayList<Carta> distribuirCartas(int quantas) {
+	private ArrayList<Carta> distribuirCartas(int quantas) {
 		ArrayList<Carta> tiradas = new ArrayList<Carta>();
 		for (int i = 0; i < quantas; i++) {
 			tiradas.add(distribuirCarta());

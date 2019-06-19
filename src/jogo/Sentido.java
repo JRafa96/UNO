@@ -15,6 +15,14 @@ public enum Sentido {
 
 	private int nSentido;
 
+	
+	
+	public int getnSentido() {
+		return nSentido;
+	}
+
+
+
 	private Sentido(int n) {
 		nSentido = n;
 	}

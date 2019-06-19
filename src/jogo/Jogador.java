@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
- * A classe <code> Jogador </code> serve para representar quais s�o os jogadores que
- * est�o a jogar e 
+ * A classe <code> Jogador </code> serve para representar quais s�o os jogadores
+ * que est�o a jogar e
  * 
  * @author quinz
  *
@@ -26,23 +26,27 @@ public class Jogador {
 
 	/**
 	 * M�todo de acesso (leitura) do nome do Jogador
+	 * 
 	 * @return
 	 */
 	public String getNome() {
 		return nome;
 	}
-	
-/**
- * M�todo de acesso (leitura) do registo das cartas m�o
- * @return
- */
+
+	/**
+	 * M�todo de acesso (leitura) do registo das cartas m�o
+	 * 
+	 * @return
+	 */
 	public ArrayList<Carta> getMao() {
 		return mao;
 	}
-/**
- * M�todo de acesso (leitura) do registo das cartas jogaveis
- * @return
- */
+
+	/**
+	 * M�todo de acesso (leitura) do registo das cartas jogaveis
+	 * 
+	 * @return
+	 */
 	public ArrayList<Carta> getJogaveis() {
 		return jogaveis;
 	}
@@ -54,8 +58,9 @@ public class Jogador {
 	}
 
 	/**
-	 * 	 
+	 * 
 	 * Constr�i um objeto da classe <code> Jogador </code>
+	 * 
 	 * @param nome Identificador do Jogador
 	 */
 	public Jogador(String nome) {
@@ -63,15 +68,14 @@ public class Jogador {
 
 	}
 
-
 	private String getJogaveisString() {
 		return jogaveis.toString();
 	}
 
 	public Carta jogarCarta(Estado estado) {
 		verificarJogaveis(estado);
-		System.out.println("mão : "+mao.toString());
-		System.out.println("jogaveis : "+getJogaveisString());
+		System.out.println("mão : " + mao.toString());
+		System.out.println("jogaveis : " + getJogaveisString());
 		System.out.println("Que carta quer jogar?");
 		Scanner LerS = new Scanner(System.in);
 		int n = LerS.nextInt();
@@ -89,12 +93,12 @@ public class Jogador {
 	public void receberCartas(ArrayList<Carta> cartas) {
 		mao.addAll(cartas);
 	}
-	
-/**
- * M�todo que verifica se a m�o est� vazia
- * 
- * @return
- */
+
+	/**
+	 * M�todo que verifica se a m�o est� vazia
+	 * 
+	 * @return
+	 */
 	public boolean isVazia() {
 		if (mao.size() == 0) {
 			return true;
@@ -112,10 +116,10 @@ public class Jogador {
 		jogaveis.add(mao.get(pos));
 		mao.remove(pos);
 	}
-	
+
 	/**
-	 * M�todo que verifica se as cartas da m�o s�o jogevis, caso forem, move
-	 * a carta da m�o para o arraylist das jogaveis
+	 * M�todo que verifica se as cartas da m�o s�o jogevis, caso forem, move a carta
+	 * da m�o para o arraylist das jogaveis
 	 * 
 	 * @param estado Devolve a o estado atual da carta que est� no jogo
 	 */
@@ -133,7 +137,8 @@ public class Jogador {
 						j--;
 					}
 				} else if (estado.cartaAtual instanceof CartaNumero) {
-					if (((ActionCard) mao.get(j)).getCor().ordinal() == ((CartaNumero) estado.cartaAtual).getCor().ordinal()) {
+					if (((ActionCard) mao.get(j)).getCor().ordinal() == ((CartaNumero) estado.cartaAtual).getCor()
+							.ordinal()) {
 						moverJogaveis(j);
 						j--;
 					}
@@ -141,7 +146,8 @@ public class Jogador {
 
 			} else if (mao.get(j) instanceof CartaNumero) {
 				if (estado.cartaAtual instanceof CartaNumero) {
-					if (((CartaNumero) mao.get(j)).getCor().ordinal() == ((CartaNumero) estado.cartaAtual).getCor().ordinal()) {
+					if (((CartaNumero) mao.get(j)).getCor().ordinal() == ((CartaNumero) estado.cartaAtual).getCor()
+							.ordinal()) {
 						moverJogaveis(j);
 						j--;
 					} else if (((CartaNumero) mao.get(j)).getNumero() == ((CartaNumero) estado.cartaAtual)
@@ -150,7 +156,8 @@ public class Jogador {
 						j--;
 					}
 				} else if (estado.cartaAtual instanceof ActionCard) {
-					if (((CartaNumero) mao.get(j)).getCor().ordinal() == ((ActionCard) estado.cartaAtual).getCor().ordinal()) {
+					if (((CartaNumero) mao.get(j)).getCor().ordinal() == ((ActionCard) estado.cartaAtual).getCor()
+							.ordinal()) {
 						moverJogaveis(j);
 						j--;
 					}
@@ -166,6 +173,7 @@ public class Jogador {
 	@Override
 	public String toString() {
 		String separador = "\n+----------------------------------------------+\n";
-		return separador + "Jogador: " + nome + "\n Cartas na mao: " + mao + "\n Cartas jogaveis: " + jogaveis;
+		return separador + "Jogador: " + nome + "\n Cartas na mao: " + mao + "\n Cartas jogaveis: " + jogaveis
+				+ "\n Está proibido : " + proibido;
 	}
 }
