@@ -66,6 +66,7 @@ public class Jogo {
 
 				carta = jogadorAtual.jogarCarta(estado);
 				pilha.add(carta);
+				System.out.println(jogadorAtual.getNome() + " jogou " + pilha.get(pilha.size() - 1).toString());
 				if (!(carta instanceof CartaNumero)) {
 					Jogador proximoJogador = jogadores.get(indiceProximoJogador());
 					try {
@@ -92,7 +93,6 @@ public class Jogo {
 				estado.setBaralhoAtual(baralho);
 				estado.setSentidoAtual(sentido);
 
-				System.out.println(jogadorAtual.getNome() + " jogou " + pilha.get(pilha.size() - 1).toString());
 			}
 			jogadorAtual.setProibido(false);
 		} while (!(jogadorAtual.getMao().size() == 0 && jogadorAtual.getJogaveis().size() == 0));
@@ -101,15 +101,15 @@ public class Jogo {
 
 	private void mandarBuscar(Jogador jogadorAtual, Jogador proximoJogador, int quantas) {
 		proximoJogador.receberCartas(baralho.tirarCartas(quantas));
-		proibirProximo();
 		System.out.println("O jogador " + jogadorAtual.getNome() + " mandou o jogador " + proximoJogador.getNome()
 				+ " ir buscar " + quantas + " cartas.\n");
+		proibirProximo();
 	}
 
 	private void proibirProximo() {
 		Jogador proximoJogador = jogadores.get(indiceProximoJogador());
 		proximoJogador.setProibido(true);
-		System.out.println("\n O jogador " + jogadores.get(indiceJogadorAtual).getNome() + " proibiu o jogador "
+		System.out.println("\nO jogador " + jogadores.get(indiceJogadorAtual).getNome() + " proibiu o jogador "
 				+ proximoJogador.getNome() + " de jogar!\n");
 	}
 
@@ -118,6 +118,8 @@ public class Jogo {
 	}
 
 	private void trocarSentido() {
+		if(jogadores.size()==2)
+			proibirProximo();
 		if (sentido == Sentido.DIREITA) {
 			sentido = Sentido.ESQUERDA;
 		} else {

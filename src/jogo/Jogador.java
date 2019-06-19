@@ -75,10 +75,16 @@ public class Jogador {
 	public Carta jogarCarta(Estado estado) {
 		verificarJogaveis(estado);
 		System.out.println("mão : " + mao.toString());
-		System.out.println("jogaveis : " + getJogaveisString());
-		System.out.println("Que carta quer jogar?");
 		Scanner LerS = new Scanner(System.in);
-		int n = LerS.nextInt();
+		int n;
+		do {
+			System.out.println("jogaveis : " + getJogaveisString());
+			System.out.println("Que carta quer jogar?");
+			n = LerS.nextInt();
+			if(n >= jogaveis.size()||n<0) {
+				System.out.println("O valor introduzido é inválido\n");
+			}
+		} while (n >= jogaveis.size()||n<0);
 		Carta carta = jogaveis.get(n);
 		jogaveis.remove(n);
 		mao.addAll(jogaveis);
