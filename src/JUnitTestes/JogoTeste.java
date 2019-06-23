@@ -120,8 +120,6 @@ class JogoTeste {
 			}
 		}
 		assertEquals(antes + 4, pl2.getMao().size(), "Total de Cartas na Mao" + pl2.getMao().size());
-		int i1 = pilha.size() - 1;
-		assertEquals(Cor.VERMELHO, pilha.get(i1));
 	}
 
 	@Test
@@ -131,33 +129,8 @@ class JogoTeste {
 	}
 
 	@Test
-	@DisplayName("╯°□°）╯ ||____||  Tentar jogar Carta nao jogavel")
-	void test4() {
-
-	}
-
-	@Test
-	@DisplayName("╯°□°）╯ ||____||  Cada jogador tem quantas cartas")
-	void test5() {
-
-	}
-
-	@Test
-	@DisplayName("╯°□°）╯ ||____||  jogador depois de proibido volta a trocar estado")
-	void test6() {
-
-	}
-
-	@Test
 	@DisplayName("╯°□°）╯ ||____||  jogador so vai buscar ate ter carta jogavel")
 	void test7() {
 
 	}
-
-	@Test
-	@DisplayName("╯°□°）╯ ||____||  jogador so vai buscar ate ter carta jogavel")
-	void test8() {
-
-	}
-
 }
