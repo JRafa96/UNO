@@ -55,6 +55,7 @@ public class WildCard extends CartaEspecial {
 	@Override
 	public void açao() throws Exception{
 		Cor cor=mudarCor();
+
 		if(tipo == Tipo.MAIS_4) {
 			throw new Mais_4(cor);
 		}else {

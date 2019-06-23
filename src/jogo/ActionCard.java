@@ -3,7 +3,7 @@ package jogo;
 /**
  * A classe <code>ActionCard</code> � constituida por um tipo 
  * (Mais_2, Inverter_Sentido e Proibido), uma cor e uma a��o que � determinada pelo tipo.
- * @author Jo�o Rafael
+ * @author João Rafael
  *
  */
 public class ActionCard extends CartaEspecial {
