@@ -6,7 +6,7 @@ import java.util.Collections;
 
 /**
  * A class <code>Baralho</code> representa o baralho que vai ser utilizado no jogo do UNO.
- * É constituido por 108 cartas:
+ * ï¿½ constituido por 108 cartas:
  * <ul>
  * 	<li>4 cores (vermelhas, amarelas, verdes, azuis)</li>
  * 	<li>3 tipos (ActionCards, WildCards e CartasNumero)</li>
@@ -14,7 +14,7 @@ import java.util.Collections;
  *  <li>24 ActionCard</li>
  *  <li>8 WildCards</li>  
  * </ul> 
- * @author João Rafael
+ * @author Joï¿½o Rafael
  * @version 1.0
  */
 public class Baralho {
@@ -43,7 +43,7 @@ public class Baralho {
 	
 	
 	/**
-	 * Método de acesso (leitura) ao baralho.
+	 * Mï¿½todo de acesso (leitura) ao baralho.
 	 * @return Array de cartas (baralho)
 	 */
 	public ArrayList<Carta> getBaralho() {
@@ -52,7 +52,7 @@ public class Baralho {
 	
 	
 	/**
-	 * Método utilizado para tranferir a pilha do jogo para o baralho e depois baralhar o baralho.
+	 * Mï¿½todo utilizado para tranferir a pilha do jogo para o baralho e depois baralhar o baralho.
 	 * @param pilha
 	 */
 	public void transferirPilha(ArrayList<Carta> pilha) {
@@ -74,7 +74,7 @@ public class Baralho {
 	
 	
 	/**
-	 * Utiliza o método <code>tirarCarta()</code> para retirar uma quantidade especifica de cartas.
+	 * Utiliza o mï¿½todo <code>tirarCarta()</code> para retirar uma quantidade especifica de cartas.
 	 * @param quantidade
 	 * @return Array de cartas
 	 */
@@ -96,22 +96,23 @@ public class Baralho {
 	}
 	
 	/**
-	 * Método utilizado para verificar se a primeira carta do baralho é uma <code>CartaNumero</code>.
+	 * Mï¿½todo utilizado para verificar se a primeira carta do baralho ï¿½ uma <code>CartaNumero</code>.
 	 */
 	protected void validarPrimeiraCarta() {
 		Carta carta= baralho.get(0);
 		while (!(carta instanceof CartaNumero)) {
-			carta = baralho.get(0);
-			devolverCarta(carta);
+			Carta primeiraCarta = baralho.get(0);
+			devolverCarta(primeiraCarta);
 			baralho.remove(0);
+			carta = baralho.get(0);
 		}
 	}
 	
 	/**
 	 * Cria as 108 cartas do baralho.
 	  * <ul>
-	  * 	<li>2x Números (do 1 ao 9), para cada cor</li>
-	  * 	<li>1x Números 0, para cada cor</li>
+	  * 	<li>2x Nï¿½meros (do 1 ao 9), para cada cor</li>
+	  * 	<li>1x Nï¿½meros 0, para cada cor</li>
 	  * 	<li>2x ActionCard (Mais_2, proibido, inverte_sentido), para cada cor</li>
 	  * 	<li>4x MudaCor e Mais_4</li>   
 	  * </ul> 
@@ -149,7 +150,7 @@ public class Baralho {
 	
 	/**
 	 * Construtor da classe baralho vai <code>gerarCartas()</code> e
-	 * <code>baralhar()</code> quando é instanciado.
+	 * <code>baralhar()</code> quando ï¿½ instanciado.
 	 */
 	public Baralho() {
 		gerarCartas();
