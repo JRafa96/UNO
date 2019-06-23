@@ -69,7 +69,13 @@ public class Jogador {
 	}
 
 	private String getJogaveisString() {
-		return jogaveis.toString();
+		String[] jogaveisVetor=jogaveis.toString().replace("[", "").replace("]", "").split(",");
+		String jogaveisString="[ 0 -> "+jogaveisVetor[0];
+		for (int i = 1; i < jogaveisVetor.length; i++) {
+			jogaveisString+=" , "+i+" -> "+jogaveisVetor[i];
+		}
+		jogaveisString+=" ]";
+		return jogaveisString;
 	}
 
 	public Carta jogarCarta(Estado estado) {
@@ -77,10 +83,16 @@ public class Jogador {
 		System.out.println("mão : " + mao.toString());
 		Scanner LerS = new Scanner(System.in);
 		int n;
+		String s;
 		do {
 			System.out.println("jogaveis : " + getJogaveisString());
 			System.out.println("Que carta quer jogar?");
-			n = LerS.nextInt();
+			s=LerS.next();
+			try {
+				n = Integer.parseInt(s);
+			}catch(Exception e) {
+				n=-1;
+			}
 			if(n >= jogaveis.size()||n<0) {
 				System.out.println("O valor introduzido é inválido\n");
 			}

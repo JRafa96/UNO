@@ -10,7 +10,7 @@ public class Jogo {
 	Estado estado;
 	Sentido sentido;
 	int indiceJogadorAtual;
-	
+
 	public Jogo() {
 		jogadores = new ArrayList<>();
 		baralho = new Baralho();
@@ -55,10 +55,7 @@ public class Jogo {
 			estado.setJogadorAtual(jogadorAtual);
 			jogadorAtual.verificarJogaveis(estado);
 			while (jogadorAtual.getJogaveis().size() <= 0) {
-				if (baralho.getBaralho().size() == 0) {
-					baralho.transferirPilha(pilha);
-				}
-				jogadorAtual.receberCarta(baralho.tirarCarta());
+				jogadorAtual.receberCarta(distribuirCarta());
 				jogadorAtual.verificarJogaveis(estado);
 			}
 			System.out.println(estado.toString());
@@ -83,7 +80,6 @@ public class Jogo {
 					} catch (MudaCor mudaCor) {
 						mudarCor(mudaCor.getCor());
 					} catch (Exception e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 				}
@@ -100,7 +96,7 @@ public class Jogo {
 	}
 
 	private void mandarBuscar(Jogador jogadorAtual, Jogador proximoJogador, int quantas) {
-		proximoJogador.receberCartas(baralho.tirarCartas(quantas));
+		proximoJogador.receberCartas(distribuirCartas(quantas));
 		System.out.println("O jogador " + jogadorAtual.getNome() + " mandou o jogador " + proximoJogador.getNome()
 				+ " ir buscar " + quantas + " cartas.\n");
 		proibirProximo();
@@ -118,7 +114,7 @@ public class Jogo {
 	}
 
 	private void trocarSentido() {
-		if(jogadores.size()==2)
+		if (jogadores.size() == 2)
 			proibirProximo();
 		if (sentido == Sentido.DIREITA) {
 			sentido = Sentido.ESQUERDA;
@@ -144,7 +140,7 @@ public class Jogo {
 			System.out.println("Introduza o nome do Jogador " + (i + 1));
 			nome = scan.next();
 			jogador = new Jogador(nome);
-			jogador.receberCartas(baralho.tirarCartas(7));
+			jogador.receberCartas(distribuirCartas(7));
 			jogadores.add(jogador);
 		}
 		baralho.validarPrimeiraCarta();
@@ -155,15 +151,15 @@ public class Jogo {
 	}
 
 	private Carta distribuirCarta() {
+		if (baralho.getBaralho().size() <= 1)
+			baralho.transferirPilha(pilha);
 		return baralho.tirarCarta();
 	}
 
 	private ArrayList<Carta> distribuirCartas(int quantas) {
-		ArrayList<Carta> tiradas = new ArrayList<Carta>();
-		for (int i = 0; i < quantas; i++) {
-			tiradas.add(distribuirCarta());
-		}
-		return tiradas;
+		if (baralho.getBaralho().size() <= quantas)
+			baralho.transferirPilha(pilha);
+		return baralho.tirarCartas(quantas);
 	}
 
 }
