@@ -4,8 +4,9 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
- * Classe que executa o jogo em si, quer seja trocar jogadores, dizer ao jogador
- * para tirar cartas,
+ * Classe que executa o jogo em si, cria um jogo, inicia o jogo, controla os
+ * jogadores (verifica qual é o jogador atual e qual será o próximo), controla o
+ * sentido do jogo e controla as cartas jogadas e as ações de cada uma delas.  
  * 
  * @author Bernardo
  *
