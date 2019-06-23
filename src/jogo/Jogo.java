@@ -3,6 +3,11 @@ package jogo;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Classe que executa o jogo em si, quer seja trocar jogadores, dizer ao jogador para tirar cartas, 
+ * @author Bernardo
+ *
+ */
 public class Jogo {
 	ArrayList<Jogador> jogadores;
 	ArrayList<Carta> pilha;
@@ -11,6 +16,16 @@ public class Jogo {
 	Sentido sentido;
 	int indiceJogadorAtual;
 
+	/**
+	 * Construtor do jogo.
+	 * <ul>
+	 * <li>jogadores: cria um arraylist de jogadores.</li>
+	 * <li>baralho: cria uma lista com todas as cartas do baralho.</li>
+	 * <li>pilha: cria um arraylist com as cartas jogadas durante o jogo.</li>
+	 * <li>sentido: define o sentido em que o jogo ocorre.</li>
+	 * <li>indiceJogadorAtual: define qual é o jogador atual. </li>
+	 * </ul>
+	 */
 	public Jogo() {
 		jogadores = new ArrayList<>();
 		baralho = new Baralho();
@@ -19,6 +34,9 @@ public class Jogo {
 		indiceJogadorAtual = 0;
 	}
 
+	/**
+	 * Método que é chamado cada vez que um jogador joga, e verifica se o próximo jogador está proibido.
+	 */
 	private void avancarJogador() {
 		indiceJogadorAtual = indiceProximoJogador();
 		if (jogadores.get(indiceJogadorAtual).isProibido()) {
@@ -27,6 +45,10 @@ public class Jogo {
 		}
 	}
 
+	/**
+	 * Método que verifica o sentido atual do jogo e define qual será o próximo jogador a jogar. 
+	 * @return
+	 */
 	private int indiceProximoJogador() {
 		int indexJogador = indiceJogadorAtual;
 		int nextI = sentido.getnSentido();
@@ -40,6 +62,10 @@ public class Jogo {
 		}
 	}
 
+	/**
+	 * Método que retorna o próximo jogador do arraylist jogadores.
+	 * @return
+	 */
 	private Jogador proximoJogador() {
 		indiceJogadorAtual = indiceProximoJogador();
 		return jogadores.get(indiceJogadorAtual);
@@ -95,6 +121,12 @@ public class Jogo {
 		System.out.println("O jogo acabou!!");
 	}
 
+	/**
+	 * Método que é chamado quando um jogador manda o próximo jogador ir buscar cartas e proibe o jogador que foi buscar as cartas. 
+	 * @param jogadorAtual
+	 * @param proximoJogador
+	 * @param quantas
+	 */
 	private void mandarBuscar(Jogador jogadorAtual, Jogador proximoJogador, int quantas) {
 		proximoJogador.receberCartas(distribuirCartas(quantas));
 		System.out.println("O jogador " + jogadorAtual.getNome() + " mandou o jogador " + proximoJogador.getNome()
@@ -102,6 +134,9 @@ public class Jogo {
 		proibirProximo();
 	}
 
+	/**
+	 * Método que é chamado quando o jogador atual joga uma carta que proibe o jogador seguinte.
+	 */
 	private void proibirProximo() {
 		Jogador proximoJogador = jogadores.get(indiceProximoJogador());
 		proximoJogador.setProibido(true);
@@ -109,6 +144,10 @@ public class Jogo {
 				+ proximoJogador.getNome() + " de jogar!\n");
 	}
 
+	/**
+	 * Método que é chamado quando o jogador atual joga uma carta que permite mudar de cor.
+	 * @param cor
+	 */
 	private void mudarCor(Cor cor) {
 		estado.setCarta(new ActionCard(Tipo.COR, cor));
 	}
