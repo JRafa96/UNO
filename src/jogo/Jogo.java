@@ -108,7 +108,6 @@ public class Jogo {
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
-
 				}
 				if (!(carta instanceof WildCard)) {
 					estado.setCarta(carta);
@@ -144,7 +143,6 @@ public class Jogo {
 		System.out.println("\nO jogador " + jogadores.get(indiceJogadorAtual).getNome() + " proibiu o jogador "
 				+ proximoJogador.getNome() + " de jogar!\n");
 	}
-
 
 	/**
 	 * Método que é chamado quando o jogador atual joga uma carta que permite mudar de cor.

@@ -1,10 +1,9 @@
 TESTES 
 
-X-Quantas cartas tem o baralho 
-X-mais do que 2 cartas iguais
-X-mais do que 4 wildcards iguais
-X-Cada jogador tem quantas cartas inicio
--baralho acaba e nao deixa ir buscar cartas sem tirar pilha
+-Quantas cartas tem o baralho
+-mais do que 2 cartas iguais
+-mais do que 4 wildcards iguais
+-Cada jogador tem quantas cartas
 -Tentar jogar Carta nao jogavel
 -jogador foi buscar cartas dps de +2 ou +4?
 -jogador depois de proibido volta a trocar estado
@@ -12,4 +11,5 @@ X-Cada jogador tem quantas cartas inicio
 -mudar cor modifica estado
 -jogador so vai buscar ate ter carta jogavel
 -jogo acaba quando algum jogador n tem cartas
+-baralho acaba e nao deixa ir buscar cartas sem tirar pilha
 -tentar jogar mais que uma carta
