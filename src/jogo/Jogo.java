@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
- * Classe que executa o jogo em si, quer seja trocar jogadores, dizer ao jogador para tirar cartas, 
+ * Classe que executa o jogo em si, quer seja trocar jogadores, dizer ao jogador
+ * para tirar cartas,
+ * 
  * @author Bernardo
  *
  */
@@ -23,7 +25,7 @@ public class Jogo {
 	 * <li>baralho: cria uma lista com todas as cartas do baralho.</li>
 	 * <li>pilha: cria um arraylist com as cartas jogadas durante o jogo.</li>
 	 * <li>sentido: define o sentido em que o jogo ocorre.</li>
-	 * <li>indiceJogadorAtual: define qual é o jogador atual. </li>
+	 * <li>indiceJogadorAtual: define qual é o jogador atual.</li>
 	 * </ul>
 	 */
 	public Jogo() {
@@ -35,7 +37,8 @@ public class Jogo {
 	}
 
 	/**
-	 * Método que é chamado cada vez que um jogador joga, e verifica se o próximo jogador está proibido.
+	 * Método que é chamado cada vez que um jogador joga, e verifica se o próximo
+	 * jogador está proibido.
 	 */
 	private void avancarJogador() {
 		indiceJogadorAtual = indiceProximoJogador();
@@ -46,7 +49,9 @@ public class Jogo {
 	}
 
 	/**
-	 * Método que verifica o sentido atual do jogo e define qual será o próximo jogador a jogar. 
+	 * Método que verifica o sentido atual do jogo e define qual será o próximo
+	 * jogador a jogar.
+	 * 
 	 * @return
 	 */
 	private int indiceProximoJogador() {
@@ -64,6 +69,7 @@ public class Jogo {
 
 	/**
 	 * Método que retorna o próximo jogador do arraylist jogadores.
+	 * 
 	 * @return
 	 */
 	private Jogador proximoJogador() {
@@ -71,6 +77,19 @@ public class Jogo {
 		return jogadores.get(indiceJogadorAtual);
 	}
 
+	/**
+	 * Método para jogar.
+	 * <ul>
+	 * <li>Inicia o jogo.</li>
+	 * <li>Verifica se o jogador atual tem cartas jogaveis, enquanto o jogador não
+	 * tiver cartas jogáveis, terá de ir buscar uma carta ao baralho.</li>
+	 * <li>Verifica se o jogador atual está proibido de jogar, se não estiver
+	 * proibido irá jogar uma carta.</li>
+	 * <li>Verifica o tipo da carta jogada e aplica as regras de cada uma.</li>
+	 * <li>Verifica se o jogador atual tem cartas na mão, se o jogador ficar sem
+	 * cartas, o jogo acaba.</li>
+	 * </ul>
+	 */
 	public void jogar() {
 		começarJogo();
 		Jogador jogadorAtual;
@@ -122,7 +141,9 @@ public class Jogo {
 	}
 
 	/**
-	 * Método que é chamado quando um jogador manda o próximo jogador ir buscar cartas e proibe o jogador que foi buscar as cartas. 
+	 * Método que é chamado quando um jogador manda o próximo jogador ir buscar
+	 * cartas e proibe o jogador que foi buscar as cartas.
+	 * 
 	 * @param jogadorAtual
 	 * @param proximoJogador
 	 * @param quantas
@@ -135,7 +156,8 @@ public class Jogo {
 	}
 
 	/**
-	 * Método que é chamado quando o jogador atual joga uma carta que proibe o jogador seguinte.
+	 * Método que é chamado quando o jogador atual joga uma carta que proibe o
+	 * jogador seguinte.
 	 */
 	private void proibirProximo() {
 		Jogador proximoJogador = jogadores.get(indiceProximoJogador());
@@ -145,13 +167,19 @@ public class Jogo {
 	}
 
 	/**
-	 * Método que é chamado quando o jogador atual joga uma carta que permite mudar de cor.
+	 * Método que é chamado quando o jogador atual joga uma carta que permite mudar
+	 * de cor.
+	 * 
 	 * @param cor
 	 */
 	private void mudarCor(Cor cor) {
 		estado.setCarta(new ActionCard(Tipo.COR, cor));
 	}
 
+	/**
+	 * Método que é chamado quando um jogador joga uma carta que permite inverter o
+	 * sentido atual do jogo.
+	 */
 	private void trocarSentido() {
 		if (jogadores.size() == 2)
 			proibirProximo();
@@ -163,6 +191,18 @@ public class Jogo {
 		System.out.println(jogadores.get(indiceJogadorAtual).getNome() + " alterou o sentido do Jogo");
 	}
 
+	/**
+	 * Método que vai ser chamado para iniciar o jogo.
+	 * <ul>
+	 * <li>Pergunta quantos jogadores irão jogar até o número introduzido for entre
+	 * 1 e 10.</li>
+	 * <li>Pergunta qual o nome de cada jogador e destribui 7 cartas a cada um.</li>
+	 * <li>Verifica se a primeira carta do baralho é válida e passa a primeira carta
+	 * que for válida do baralho para a pilha.</li>
+	 * <li>Define no estado qual ser o primeiro jogador, qual a carta que está
+	 * atualmente na mesa, o sentido do jogo, e o baralho.</li>
+	 * </ul>
+	 */
 	private void começarJogo() {
 		Scanner scan = new Scanner(System.in);
 		int quantos;
@@ -189,12 +229,27 @@ public class Jogo {
 		indiceJogadorAtual = jogadores.size();
 	}
 
+	/**
+	 * Método para retirar uma carta do baralho. Verifica também se o baralho tem
+	 * cartas, se o baralho não contiver cartas, as cartas da pilha serão
+	 * transferidas para o baralho.
+	 * 
+	 * @return
+	 */
 	private Carta distribuirCarta() {
 		if (baralho.getBaralho().size() <= 1)
 			baralho.transferirPilha(pilha);
 		return baralho.tirarCarta();
 	}
 
+	/**
+	 * Método para retirar várias cartas do baralho. Verifica também se o baralho
+	 * tem cartas suficientes, se o baralho não contiver cartas suficientes, as
+	 * cartas da pilha serão transferidas para o baralho.
+	 * 
+	 * @param quantas
+	 * @return
+	 */
 	private ArrayList<Carta> distribuirCartas(int quantas) {
 		if (baralho.getBaralho().size() <= quantas)
 			baralho.transferirPilha(pilha);
