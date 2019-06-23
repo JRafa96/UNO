@@ -120,17 +120,54 @@ class JogoTeste {
 			}
 		}
 		assertEquals(antes + 4, pl2.getMao().size(), "Total de Cartas na Mao" + pl2.getMao().size());
+		System.out.println();
+		System.out.println();
+		System.out.println();
+		System.out.println();
+		System.out.println();
+		System.out.println();
+		System.out.println();
+		System.out.println();
+		System.out.println();
 	}
 
 	@Test
 	@DisplayName("╯°□°）╯ ||____||  Troca de jogador apos inverte sentido")
 	void test3() {
-
-	}
-
-	@Test
-	@DisplayName("╯°□°）╯ ||____||  jogador so vai buscar ate ter carta jogavel")
-	void test7() {
-
+		sentido = Sentido.DIREITA;
+		Sentido sentido1 = Sentido.ESQUERDA;
+		pilha = new ArrayList<Carta>();
+		indiceJogadorAtual = 0;
+		System.out.println(jogadores.get(0).getNome());
+		Carta primeira_amarela = new CartaNumero(1, Cor.values()[0]);
+		Carta c1 = new ActionCard(Tipo.values()[2], Cor.values()[0]);
+		pilha.add(primeira_amarela);
+		estado = new Estado(jogadores.get(indiceJogadorAtual), pilha.get(pilha.size() - 1), sentido, baralho);
+		System.out.println(estado.toString());
+		indiceJogadorAtual = 0;
+		// Inicio de todos Junit +/-
+		// Apenas varia pilha.add e o criar cartas
+		int antes = pl2.getMao().size();
+		estado.setCarta(c1);
+		pilha.add(c1);
+		if (!(c1 instanceof CartaNumero)) {
+			try {
+				((CartaEspecial) c1).açao();
+			} catch (Inverter_Sentido inverter_Sentido) {
+				if (jogadores.size() == 2) {
+				Jogador proximoJogador = jogadores.get(1);	
+				proximoJogador.setProibido(true);}
+				if (sentido == Sentido.DIREITA) {
+					sentido = Sentido.ESQUERDA;
+				} else {
+					sentido = Sentido.DIREITA;
+				}
+				System.out.println(jogadores.get(indiceJogadorAtual).getNome() + " alterou o sentido do Jogo");
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		assertEquals(sentido1,sentido, "Total de Cartas na Mao" + sentido);
 	}
 }
