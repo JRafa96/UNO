@@ -1,25 +1,71 @@
 package jogo;
 
-public class WildCard extends Carta {
+import java.util.Scanner;
 
-	private String tipo;
+/**
+ * A classe <code>ActionCard</code> ï¿½ constituida por um tipo e uma aï¿½ï¿½o que vai
+ * ser determinada de acordo com o seu tipo.
+ * @author Joï¿½o Rafael
+ *
+ */
+public class WildCard extends CartaEspecial {
 
-	public WildCard(String tipo) {
+	private Tipo tipo;
+
+	/**
+	 * Construtor da <code>WildCard</code>, recebe um tipo.
+	 * @param tipo
+	 */
+	public WildCard(Tipo tipo) {
 		super();
 		this.tipo = tipo;
 	}
 
-	public String getTipo() {
+	/**
+	 * Mï¿½todo de acesso (leitura) ao tipo da carta.
+	 * @return
+	 */
+	public Tipo getTipo() {
 		return tipo;
 	}
 
-	private void mudarCor() {
-		System.out.println("Mudaste de cor");
+	/**
+	 * Mï¿½todo chamado pelo jogo que vai pedir ao utilizador para introduzir uma cor.
+	 * @return cor
+	 */
+	private Cor mudarCor() {
+		String escolha;
+		do {
+			System.out.println("Escolha uma cor");
+			Scanner LerS = new Scanner(System.in);
+			escolha = LerS.next();
+		} while (Cor.stringToCor(escolha) == null);
+		
+		return Cor.stringToCor(escolha);
+		
 	}
-	
-	public void açao() {
-		System.out.println("Usaste uma carta " + tipo);
-		mudarCor();
+
+
+	/**
+	 * Aï¿½ï¿½o que a carta vai realizar no <code>jogo</code>.
+	 * 
+	 * @throws Mais_4 se a carta for do tipo MAIS_4
+	 * @throws MudaCor se a carta for do tipo MudaCor
+	 */
+	@Override
+	public void aÃ§ao() throws Exception{
+		Cor cor=mudarCor();
+		if(tipo == Tipo.MAIS_4) {
+			throw new Mais_4(cor);
+		}else {
+			throw new MudaCor(cor);
+		}
+		
 	}
-	
+
+	@Override
+	public String toString() {
+		return tipo.name();
+	}
+
 }

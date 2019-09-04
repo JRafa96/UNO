@@ -1,25 +1,64 @@
 package jogo;
 
-public class ActionCard extends Carta {
+/**
+ * A classe <code>ActionCard</code> ï¿½ constituida por um tipo 
+ * (Mais_2, Inverter_Sentido e Proibido), uma cor e uma aï¿½ï¿½o que ï¿½ determinada pelo tipo.
+ * @author Joï¿½o Rafael
+ *
+ */
+public class ActionCard extends CartaEspecial {
 
-	private String tipo;
-	private char cor;
+	private Tipo tipo;
+	private Cor cor;
 
-	public ActionCard(String tipo, char cor) {
+	/**
+	 * Construtor da <code>ActionCard</code>, recebe um tipo e uma cor.
+	 * @param tipo
+	 * @param cor
+	 */
+	public ActionCard(Tipo tipo, Cor cor) {
 		super();
 		this.tipo = tipo;
 		this.cor = cor;
 	}
 
-	public String getTipo() {
+	/**
+	 * Mï¿½todo de acesso (leitura) ao tipo da carta.
+	 * @return tipo
+	 */
+	public Tipo getTipo() {
 		return tipo;
 	}
 
-	public char getCor() {
+	/**
+	 * Mï¿½todo de acesso (leitura) ï¿½ cor da carta.
+	 * @return cor
+	 */
+	public Cor getCor() {
 		return cor;
 	}
 
-	public void açao() {
-		System.out.println("Usaste uma carta " + tipo);
+	/**
+	 *Aï¿½ï¿½o que a carta vai realizar no <code>jogo</code>.
+	 * 
+	 *@throws Mais_2 se a carta for do tipo MAIS_2
+	 *@throws Inverter_Sentido se a carta for do tipo INVERTER_SENTIDO
+	 *@throws Proibido se a carta for do tipo PROIBIDO
+	 */
+	@Override
+	public void aÃ§ao() throws Exception{
+		if(tipo == Tipo.MAIS_2) {
+			throw new Mais_2();
+		} else if (tipo == Tipo.INVERTER_SENTIDO) {
+			throw new Inverter_Sentido();
+		} else if (tipo == Tipo.PROIBIDO) {
+			throw new Proibido();
+		}
+	}
+	
+	@Override
+	public String toString() {
+		String nome=tipo==Tipo.COR?"":tipo.name();
+		return nome+" "+cor.name();
 	}
 }
